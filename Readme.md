@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Anatoly Udavikhin](https://up.htmlacademy.ru/react/10/user/132786).
-* Наставник: `Валерий Махнюк`.
+* Наставник: [Валерий Махнюк](https://htmlacademy.ru/profile/id664763).
 
 ---
 
