@@ -17,9 +17,11 @@ const Settings = {
 root.render(
   <React.StrictMode>
     <App
-      promoFilmTitle={Settings.PROMO_FILM.TITLE}
-      promoFilmGenre={Settings.PROMO_FILM.GENRE}
-      promoFilmYear={Settings.PROMO_FILM.YEAR}
+      promoFilm ={{
+        title: Settings.PROMO_FILM.TITLE,
+        genre: Settings.PROMO_FILM.GENRE,
+        year: Settings.PROMO_FILM.YEAR
+      }}
     />
   </React.StrictMode>,
 );
