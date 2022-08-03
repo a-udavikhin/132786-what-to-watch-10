@@ -1,10 +1,10 @@
-import {Films} from '../../types/film';
+import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 type MyListScreenProps = {
-  filmsData: Films
+  filmsData: Film[]
 }
 
 function MyListScreen({filmsData}: MyListScreenProps): JSX.Element {

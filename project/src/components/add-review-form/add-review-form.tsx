@@ -16,7 +16,7 @@ function AddReviewForm(): JSX.Element {
   for (let stars = 10; stars > 0; stars--) {
     starsMarkUp.push(
       <>
-        <input key={`input-${stars}`} className="rating__input" id={`star-${stars}`} type="radio" name="rating" onChange={fieldChangeHandle} value={stars} checked= {Number(formData.rating) === stars} />
+        <input key={`input-${stars}`} className="rating__input" id={`star-${stars}`} type="radio" name="rating" onChange={fieldChangeHandle} value={stars} checked={Number(formData.rating) === stars} />
         <label key={`label-${stars}`} className="rating__label" htmlFor={`star-${stars}`} >Rating {stars}</label>
       </>);
   }

@@ -1,7 +1,7 @@
-import { Films } from '../types/film';
+import { Film } from '../types/film';
 import { MOCK_VIDEO_SRC } from '../const';
 
-export const films: Films = [
+export const films: Film[] = [
   {
     id: 0,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',

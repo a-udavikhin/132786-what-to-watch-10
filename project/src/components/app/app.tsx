@@ -8,15 +8,11 @@ import FilmScreen from '../../pages/film-screen/film-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import {Films} from '../../types/film';
+import {Film, PromoFilm} from '../../types/film';
 
 type AppProps = {
-  promoFilm: {
-    title: string,
-    genre: string,
-    year: string
-  },
-  filmsData: Films
+  promoFilm: PromoFilm,
+  filmsData: Film[]
 }
 
 function App({promoFilm, filmsData}: AppProps): JSX.Element {

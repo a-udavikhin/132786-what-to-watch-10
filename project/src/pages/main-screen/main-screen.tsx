@@ -1,15 +1,11 @@
-import {Films} from '../../types/film';
+import {Film, PromoFilm} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 
 type MainScreenProps = {
-  promoFilm: {
-    title: string,
-    genre: string,
-    year: string
-  },
-  filmsData: Films
+  promoFilm: PromoFilm,
+  filmsData: Film[]
 }
 
 function MainScreen({promoFilm, filmsData}: MainScreenProps): JSX.Element {

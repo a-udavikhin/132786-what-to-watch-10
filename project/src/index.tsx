@@ -23,7 +23,7 @@ root.render(
         genre: Settings.PROMO_FILM.GENRE,
         year: Settings.PROMO_FILM.YEAR
       }}
-      filmsData = {films}
+      filmsData={films}
     />
   </React.StrictMode>,
 );

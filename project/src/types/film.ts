@@ -5,4 +5,8 @@ export type Film = {
   previewSrc: string
 }
 
-export type Films = Film[]
+export type PromoFilm = {
+    title: string,
+    genre: string,
+    year: string
+}
