@@ -1,9 +1,25 @@
-function PlayerScreen(): JSX.Element {
+import {Film} from '../../types/film';
+import {useParams, Link} from 'react-router-dom';
+import {AppRoute, MOCK_VIDEO_SRC} from '../../const';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+
+type PlayerScreenProps = {
+  filmsData: Film[]
+}
+
+function PlayerScreen({filmsData}: PlayerScreenProps): JSX.Element {
+  const {id} = useParams();
+  const playerFilm = filmsData.find((film) => film.id === Number(id));
+
+  if (!playerFilm) {
+    return <NotFoundScreen />;
+  }
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={MOCK_VIDEO_SRC} className="player__video" poster={playerFilm.previewSrc}></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <Link to={AppRoute.Root} type="button" className="player__exit">Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -21,7 +37,7 @@ function PlayerScreen(): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{playerFilm.title}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

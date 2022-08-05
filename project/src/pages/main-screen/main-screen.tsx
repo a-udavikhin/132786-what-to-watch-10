@@ -1,14 +1,14 @@
-import FilmCard from '../../components/film-card/film-card';
+import {Film, PromoFilm} from '../../types/film';
+import FilmList from '../../components/film-list/film-list';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 type MainScreenProps = {
-  promoFilm: {
-    title: string,
-    genre: string,
-    year: string
-  }
+  promoFilm: PromoFilm,
+  filmsData: Film[]
 }
 
-function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
+function MainScreen({promoFilm, filmsData}: MainScreenProps): JSX.Element {
   return (
     <>
 
@@ -21,11 +21,11 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href="#todo" className="logo__link">
+            <Link to={AppRoute.Root} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -35,7 +35,7 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="#todo" className="user-block__link">Sign out</a>
+              <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -54,19 +54,19 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <Link to={AppRoute.Player.replace(':id', '0')} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
+                </Link>
+                <Link to={AppRoute.MyList} className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -111,106 +111,7 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <FilmCard
-              imgSrc="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              filmTitle="Fantastic Beasts: The Crimes of Grindelwald"
-            />
-
-            <FilmCard
-              imgSrc="img/bohemian-rhapsody.jpg"
-              filmTitle="Bohemian Rhapsody"
-            />
-
-            <FilmCard
-              imgSrc="img/macbeth.jpg"
-              filmTitle="Macbeth"
-            />
-
-            <FilmCard
-              imgSrc="img/aviator.jpg"
-              filmTitle="Aviator"
-            />
-
-            <FilmCard
-              imgSrc="img/we-need-to-talk-about-kevin.jpg"
-              filmTitle="We need to talk about Kevin"
-            />
-
-            <FilmCard
-              imgSrc="img/what-we-do-in-the-shadows.jpg"
-              filmTitle="What We Do in the Shadows"
-            />
-
-            <FilmCard
-              imgSrc="img/revenant.jpg"
-              filmTitle="Revenant"
-            />
-
-            <FilmCard
-              imgSrc="img/johnny-english.jpg"
-              filmTitle="Johnny English"
-            />
-
-            <FilmCard
-              imgSrc="img/shutter-island.jpg"
-              filmTitle="Shutter Island"
-            />
-
-            <FilmCard
-              imgSrc="img/pulp-fiction.jpg"
-              filmTitle="Pulp Fiction"
-            />
-
-            <FilmCard
-              imgSrc="img/no-country-for-old-men.jpg"
-              filmTitle="No Country for Old Men"
-            />
-
-            <FilmCard
-              imgSrc="img/snatch.jpg"
-              filmTitle="Snatch"
-            />
-
-            <FilmCard
-              imgSrc="img/moonrise-kingdom.jpg"
-              filmTitle="Moonrise Kingdom"
-            />
-
-
-            <FilmCard
-              imgSrc="img/seven-years-in-tibet.jpg"
-              filmTitle="Seven Years in Tibet"
-            />
-
-            <FilmCard
-              imgSrc="img/midnight-special.jpg"
-              filmTitle="Midnight Special"
-            />
-
-            <FilmCard
-              imgSrc="img/war-of-the-worlds.jpg"
-              filmTitle="War of the Worlds"
-            />
-
-            <FilmCard
-              imgSrc="img/dardjeeling-limited.jpg"
-              filmTitle="Dardjeeling Limited"
-            />
-
-            <FilmCard
-              imgSrc="img/orlando.jpg"
-              filmTitle="Orlando"
-            />
-
-            <FilmCard
-              imgSrc="img/mindhunter.jpg"
-              filmTitle="Mindhunter"
-            />
-
-            <FilmCard
-              imgSrc="img/midnight-special.jpg"
-              filmTitle="Midnight Special"
-            />
+            <FilmList filmsData={filmsData} />
           </div>
 
 
@@ -221,11 +122,11 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="#todo" className="logo__link logo__link--light">
+            <Link to={AppRoute.Root} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

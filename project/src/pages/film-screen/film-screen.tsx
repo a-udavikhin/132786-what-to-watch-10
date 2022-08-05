@@ -1,4 +1,21 @@
-function FilmScreen(): JSX.Element {
+import {Film} from '../../types/film';
+import {useParams, Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+
+type FilmScreenProps = {
+  filmsData: Film[]
+}
+
+
+function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
+  const {id} = useParams();
+  const currentFilm = filmsData.find((film) => film.id === Number(id));
+
+  if (!currentFilm) {
+    return <NotFoundScreen />;
+  }
+
   return (
     <>
 
@@ -12,11 +29,11 @@ function FilmScreen(): JSX.Element {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={AppRoute.Root} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <ul className="user-block">
@@ -26,34 +43,34 @@ function FilmScreen(): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a href="#todo" className="user-block__link">Sign out</a>
+                <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
               </li>
             </ul>
           </header>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{currentFilm.title}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">Drama</span>
                 <span className="film-card__year">2014</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <Link to={AppRoute.Player.replace(':id', String(currentFilm.id))} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
+                </Link>
+                <Link to={AppRoute.MyList} className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
-                </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                </Link>
+                <Link to={AppRoute.AddReview.replace(':id', String(currentFilm.id))} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -147,11 +164,11 @@ function FilmScreen(): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={AppRoute.Root} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
