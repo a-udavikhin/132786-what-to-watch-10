@@ -1,6 +1,7 @@
 import {Film} from '../../types/film';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import VideoPlayer from '../video-player/video-player';
 
 type FilmCardProps = {
     film: Film,
@@ -10,9 +11,7 @@ type FilmCardProps = {
 function FilmCard({film, onMouseOverHandler}: FilmCardProps): JSX.Element {
   return (
     <article onMouseOver={onMouseOverHandler} className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
-        <img src={film.previewSrc} alt={film.title} width="280" height="175" />
-      </div>
+      <VideoPlayer noSound film={film}></VideoPlayer>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.title}</Link>
       </h3>
