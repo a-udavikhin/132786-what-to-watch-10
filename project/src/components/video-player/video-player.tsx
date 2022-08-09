@@ -19,27 +19,27 @@ function VideoPlayer({noSound, film}: VideoPlayerProps): JSX.Element {
     }
 
     //videoRef.current.addEventListener('loadeddata', () => setIsLoading(false));
-    videoRef.current.addEventListener('mouseover', () => setIsPlaying(!isPlaying));
-    console.log(videoRef.current);
-
+    //videoRef.current.addEventListener('mouseenter', () => setIsPlaying(!isPlaying));
     if (isPlaying) {
       videoRef.current.play();
     }
 
-  }, [isPlaying]);
+    videoRef.current.pause();
+
+  });
 
   return (
-    <video
-      key={`${film.src} - ${film.id}`}
-      src={film.src}
-      ref={videoRef}
-      width="280"
-      height="175"
-      muted={noSound}
-      onClick = {() => setIsPlaying(!isPlaying)}
-      poster={film.previewSrc}
-    >
-    </video>
+    <div onMouseEnter = {() => setIsPlaying(!isPlaying)} className="small-film-card__image">
+      <video
+        src={film.src}
+        ref={videoRef}
+        width="280"
+        height="175"
+        muted={noSound}
+        poster={film.previewSrc}
+      >
+      </video>
+    </div>
   );
 }
 
