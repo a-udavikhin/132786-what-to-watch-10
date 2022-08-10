@@ -1,5 +1,5 @@
-import { Film } from '../types/film';
-import { MOCK_VIDEO_SRC } from '../const';
+import {Film} from '../types/film';
+import {MOCK_VIDEO_SRC} from '../const';
 
 export const films: Film[] = [
   {

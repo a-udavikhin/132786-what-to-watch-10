@@ -1,7 +1,7 @@
 import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film';
 import {useState} from 'react';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Genre} from '../../types/film';
 
 type FilmListProps = {
