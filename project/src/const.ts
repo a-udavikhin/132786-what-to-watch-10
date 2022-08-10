@@ -15,3 +15,5 @@ export enum AuthorizationStatus {
 
 export const MOCK_VIDEO_SRC = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm';
 export const AUTO_PLAY_DELAY_MS = 1000;
+
+export const REVIEWS_PER_COL = 3;
