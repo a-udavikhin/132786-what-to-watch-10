@@ -1,6 +1,6 @@
-import {Review} from '../types/review';
+import {ReviewEntry} from '../types/review';
 
-export const reviews: Review[] = [
+export const reviews: ReviewEntry[] = [
   {
     id: 0,
     text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&quot;s funniest and most exquisitely designed films in years.',
