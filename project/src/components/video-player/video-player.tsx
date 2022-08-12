@@ -1,5 +1,5 @@
 import {useRef, useEffect, useState} from 'react';
-import { Film } from '../../types/film';
+import {Film} from '../../types/film';
 import {AUTO_PLAY_DELAY_MS} from '../../const';
 
 type VideoPlayerProps = {
