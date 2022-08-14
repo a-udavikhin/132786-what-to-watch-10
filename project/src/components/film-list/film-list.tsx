@@ -2,7 +2,7 @@ import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film';
 import {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/redux';
 
 type FilmListProps = {
     limit?: number

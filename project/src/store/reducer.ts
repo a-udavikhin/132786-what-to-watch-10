@@ -1,8 +1,14 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {films} from '../mocks/films';
 import {changeGenre} from './action';
+import {Genre, Film} from '../types/film';
 
-const initialState = {
+type State = {
+  genre: Genre,
+  films: Film[]
+}
+
+const initialState: State = {
   genre: 'All genres',
   films: films
 };

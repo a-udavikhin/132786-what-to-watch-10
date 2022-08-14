@@ -1,4 +1,4 @@
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {changeGenre} from '../../store/action';
 import {Film, Genre} from '../../types/film';
 

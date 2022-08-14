@@ -5,7 +5,7 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import Tabs from '../../components/tabs/tabs';
 import {reviews} from '../../mocks/reviews';
 import FilmList from '../../components/film-list/film-list';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../hooks/redux';
 import { changeGenre } from '../../store/action';
 
 type FilmScreenProps = {
