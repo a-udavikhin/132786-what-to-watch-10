@@ -5,6 +5,8 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import Tabs from '../../components/tabs/tabs';
 import {reviews} from '../../mocks/reviews';
 import FilmList from '../../components/film-list/film-list';
+import { useAppDispatch } from '../../hooks/redux';
+import { changeGenre } from '../../store/action';
 
 type FilmScreenProps = {
   filmsData: Film[]
@@ -14,10 +16,13 @@ type FilmScreenProps = {
 function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
   const currentFilm = filmsData.find((film) => film.id === Number(id));
+  const dispatch = useAppDispatch();
 
   if (!currentFilm) {
     return <NotFoundScreen />;
   }
+
+  dispatch(changeGenre(currentFilm.genre));
 
   return (
     <>
@@ -95,7 +100,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmList filmsData={filmsData} limit={4} genre={currentFilm.genre}/>
+            <FilmList limit={4} />
           </div>
         </section>
 

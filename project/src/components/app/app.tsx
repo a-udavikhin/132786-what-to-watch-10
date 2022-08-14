@@ -22,7 +22,7 @@ function App({promoFilm, filmsData}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen filmsData={filmsData} promoFilm={promoFilm} />}
+          element={<MainScreen promoFilm={promoFilm} />}
         />
         <Route
           path={AppRoute.SignIn}
