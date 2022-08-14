@@ -57,5 +57,89 @@ export const films: Film[] = [
     genre: 'Comedies',
     src: MOCK_VIDEO_SRC,
     previewSrc: 'img/johnny-english.jpg'
-  }
+  },
+  {
+    id: 8,
+    title: 'Shutter Island',
+    genre: 'Dramas',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/shutter-island.jpg'
+  },
+  {
+    id: 9,
+    title: 'Pulp Fiction',
+    genre: 'Comedies',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/pulp-fiction.jpg'
+  },
+  {
+    id: 10,
+    title: 'No Country for Old Men',
+    genre: 'Dramas',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/no-country-for-old-men.jpg'
+  },
+  {
+    id: 11,
+    title: 'Snatch',
+    genre: 'Crime',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/snatch.jpg'
+  },
+  {
+    id: 12,
+    title: 'Moonrise Kingdom',
+    genre: 'Horror',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/moonrise-kingdom.jpg'
+  },
+  {
+    id: 13,
+    title: 'Seven Years in Tibet',
+    genre: 'Thrillers',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/seven-years-in-tibet.jpg'
+  },
+  {
+    id: 14,
+    title: 'Midnight Special 1',
+    genre: 'Romance',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/midnight-special.jpg'
+  },
+  {
+    id: 15,
+    title: 'War of the Worlds',
+    genre: 'Dramas',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/war-of-the-worlds.jpg'
+  },
+  {
+    id: 16,
+    title: 'Dardjeeling Limited',
+    genre: 'Dramas',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/dardjeeling-limited.jpg'
+  },
+  {
+    id: 17,
+    title: 'Orlando',
+    genre: 'Crime',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/orlando.jpg'
+  },
+  {
+    id: 18,
+    title: 'Mindhunter',
+    genre: 'Horror',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/mindhunter.jpg'
+  },
+  {
+    id: 19,
+    title: 'Midnight Special 2',
+    genre: 'Thrillers',
+    src: MOCK_VIDEO_SRC,
+    previewSrc: 'img/midnight-special.jpg'
+  },
 ];

@@ -3,36 +3,37 @@ import {Film} from '../../types/film';
 import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/redux';
+import {SIMILAR_FILMS_LIMIT} from '../../const';
 
 type FilmListProps = {
-    limit?: number
+  filmsData: Film[]
 }
 
-function FilmList({limit}: FilmListProps): JSX.Element {
+function FilmList({filmsData}: FilmListProps): JSX.Element {
   const [/*activeFilm*/, setActiveFilm] = useState<Film | null>(null);
   const {id} = useParams();
 
-  const {genre, films} = useAppSelector((state) => state);
+  const {filmsToDisplay} = useAppSelector((state) => state);
 
-  let filteredFilms = genre === 'All genres' ? films : films.filter((film) => film.genre === genre);
 
   if (id) {
-    filteredFilms = filteredFilms.filter((film) => film.id !== Number(id));
+    filmsData = filmsData.filter((film) => film.id !== Number(id));
+    filmsData = filmsData.slice(0, SIMILAR_FILMS_LIMIT);
   }
 
-  if (limit) {
-    filteredFilms = filteredFilms.slice(0, limit);
+  if (!id) {
+    filmsData = filmsData.slice(0, filmsToDisplay);
   }
 
   return (
-    <>
-      {filteredFilms.map((film) => (
+    <div className="catalog__films-list">
+      {filmsData.map((film) => (
         <FilmCard
           onMouseOverHandler={() => setActiveFilm(film)}
           key={film.id}
           film={film}
         />))}
-    </>
+    </div>
   );
 }
 

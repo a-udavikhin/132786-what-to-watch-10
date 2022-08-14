@@ -17,3 +17,6 @@ export const MOCK_VIDEO_SRC = 'https://upload.wikimedia.org/wikipedia/commons/tr
 export const AUTO_PLAY_DELAY_MS = 1000;
 
 export const REVIEWS_PER_COL = 3;
+
+export const FILMS_PER_PAGE = 8;
+export const SIMILAR_FILMS_LIMIT = 4;
