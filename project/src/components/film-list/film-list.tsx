@@ -15,19 +15,20 @@ function FilmList({filmsData}: FilmListProps): JSX.Element {
 
   const {filmsToDisplay} = useAppSelector((state) => state);
 
+  let filmsOutput = filmsData;
 
   if (id) {
-    filmsData = filmsData.filter((film) => film.id !== Number(id));
-    filmsData = filmsData.slice(0, SIMILAR_FILMS_LIMIT);
+    filmsOutput = filmsOutput.filter((film) => film.id !== Number(id));
+    filmsOutput = filmsOutput.slice(0, SIMILAR_FILMS_LIMIT);
   }
 
   if (!id) {
-    filmsData = filmsData.slice(0, filmsToDisplay);
+    filmsOutput = filmsOutput.slice(0, filmsToDisplay);
   }
 
   return (
     <div className="catalog__films-list">
-      {filmsData.map((film) => (
+      {filmsOutput.map((film) => (
         <FilmCard
           onMouseOverHandler={() => setActiveFilm(film)}
           key={film.id}
