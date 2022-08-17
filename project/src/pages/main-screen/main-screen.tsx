@@ -3,14 +3,23 @@ import FilmList from '../../components/film-list/film-list';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import GenreList from '../../components/genre-list/genre-list';
-import {useAppSelector} from '../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import ShowMore from '../../components/show-more/show-more';
+import { resetFilmList } from '../../store/action';
+import { useEffect } from 'react';
 
 type MainScreenProps = {
   promoFilm: PromoFilm,
 }
 
 function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
-  const {films: filmsData} = useAppSelector((state) => state);
+  const {films: filmsData, genre, filmsToDisplay} = useAppSelector((state) => state);
+  const filteredFilms = genre === 'All genres' ? filmsData : filmsData.filter((film) => film.genre === genre);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetFilmList());
+  }, []);
 
   return (
     <>
@@ -82,14 +91,9 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
 
           <GenreList filmsData={filmsData} />
 
-          <div className="catalog__films-list">
-            <FilmList />
-          </div>
+          <FilmList filmsData={filteredFilms}/>
 
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {filteredFilms.length > filmsToDisplay && <ShowMore />}
         </section>
 
         <footer className="page-footer">
