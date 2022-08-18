@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {films} from './mocks/films';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import {fetchFilmsAction} from './store/api-actions';
+import ErrorMessage from './components/error-message/error-message';
+
+store.dispatch(fetchFilmsAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -20,13 +23,13 @@ const Settings = {
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorMessage />
       <App
         promoFilm ={{
           title: Settings.PROMO_FILM.TITLE,
           genre: Settings.PROMO_FILM.GENRE,
           year: Settings.PROMO_FILM.YEAR
         }}
-        filmsData={films}
       />
     </Provider>
   </React.StrictMode>,

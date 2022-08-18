@@ -1,28 +1,27 @@
 import {Film} from '../../../../types/film';
+import {getStarringString, getFilmGrade, getPlural} from '../../../../utils/utils';
 
 type OverviewTabProps = {
-  film: Film
+  currentFilm: Film
 }
 
-function OverviewTab({film}: OverviewTabProps): JSX.Element {
+function OverviewTab({currentFilm}: OverviewTabProps): JSX.Element {
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">8,9</div>
+        <div className="film-rating__score">{currentFilm.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
-          <span className="film-rating__count">240 ratings</span>
+          <span className="film-rating__level">{getFilmGrade(currentFilm.rating)}</span>
+          <span className="film-rating__count">{getPlural(currentFilm.scoresCount, 'rating')}</span>
         </p>
       </div>
 
       <div className="film-card__text">
-        <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&quot;s friend and protege.</p>
+        <p>{currentFilm.description}</p>
 
-        <p>Gustave prides himself on providing first-class service to the hotel&quot;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&quot;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+        <p className="film-card__director"><strong>Director: {currentFilm.director}</strong></p>
 
-        <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
-
-        <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+        <p className="film-card__starring"><strong>Starring: {getStarringString(currentFilm.starring)}</strong></p>
       </div>
     </>
   );

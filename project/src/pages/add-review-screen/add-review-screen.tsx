@@ -37,7 +37,7 @@ function AddReviewScreen({filmsData}: AddReviewScreenProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.Film.replace(':id', String(reviewedFilm.id))} className="breadcrumbs__link">{reviewedFilm.title}</Link>
+                <Link to={AppRoute.Film.replace(':id', String(reviewedFilm.id))} className="breadcrumbs__link">{reviewedFilm.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a href="#todo" className="breadcrumbs__link">Add review</a>

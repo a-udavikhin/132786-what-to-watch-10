@@ -13,7 +13,7 @@ function FilmCard({film, onMouseOverHandler}: FilmCardProps): JSX.Element {
     <article onMouseOver={onMouseOverHandler} className="small-film-card catalog__films-card">
       <VideoPlayer noSound film={film} />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.title}</Link>
+        <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>
       </h3>
     </article>
   );

@@ -1,9 +1,21 @@
 export type Film = {
-  id: number,
-  title: string,
-  genre: Genre,
-  src: string,
-  previewSrc: string
+    id: number
+    name: string
+    posterImage: string
+    previewImage: string
+    backgroundImage: string
+    backgroundColor: string
+    videoLink: string
+    previewVideoLink: string
+    description: string
+    rating: number
+    scoresCount: number
+    director: string
+    starring: [string]
+    runTime: number
+    genre: string
+    released: number
+    isFavorite: boolean
 }
 
 export type PromoFilm = {
@@ -12,4 +24,4 @@ export type PromoFilm = {
     year: string
 }
 
-export type Genre = 'All genres' | 'Comedies' | 'Crime' | 'Documentary' | 'Dramas' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thrillers';
+//export type Genre = 'All genres' | 'Comedies' | 'Crime' | 'Documentary' | 'Dramas' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thrillers';

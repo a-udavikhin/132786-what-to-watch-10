@@ -27,10 +27,10 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
   return (
     <>
 
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" style={{'background': currentFilm.backgroundColor}}>
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={currentFilm.backgroundImage} alt={currentFilm.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -58,10 +58,10 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{currentFilm.title}</h2>
+              <h2 className="film-card__title">{currentFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{currentFilm.genre}</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__year">{currentFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -87,10 +87,10 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={currentFilm.posterImage} alt={`${currentFilm.name} poster`} width="218" height="327" />
             </div>
 
-            <Tabs film={currentFilm} filmReviews={reviews}/>
+            <Tabs currentFilm={currentFilm} filmReviews={reviews}/>
           </div>
         </div>
       </section>
