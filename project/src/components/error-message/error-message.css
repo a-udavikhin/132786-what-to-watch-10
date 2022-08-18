@@ -1,0 +1,23 @@
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.error-message {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 15px;
+  background-color: #eee5b5;
+  color: #180202;
+  border-left: #800000 3px solid;
+  border-radius: 3px;
+  z-index: 999999;
+  animation: 0.5s ease-out 0s 1 appearance;
+  font-size: 16px;
+}
+

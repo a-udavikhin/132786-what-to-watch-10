@@ -1,5 +1,5 @@
 import {Film} from '../../../../types/film';
-import {getStarringString, getFilmGrade} from '../../../../utils/utils';
+import {getStarringString, getFilmGrade, getPlural} from '../../../../utils/utils';
 
 type OverviewTabProps = {
   currentFilm: Film
@@ -12,7 +12,7 @@ function OverviewTab({currentFilm}: OverviewTabProps): JSX.Element {
         <div className="film-rating__score">{currentFilm.rating}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{getFilmGrade(currentFilm.rating)}</span>
-          <span className="film-rating__count">{`${currentFilm.scoresCount} rating`}{currentFilm.scoresCount > 1 && 's'}</span>
+          <span className="film-rating__count">{getPlural(currentFilm.scoresCount, 'rating')}</span>
         </p>
       </div>
 

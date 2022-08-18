@@ -10,3 +10,5 @@ export const resetFilmList = createAction('films/resetFilmList');
 export const loadFilms = createAction<Film[]>('data/loadFilms');
 
 export const setDataLoadingStatus = createAction<boolean>('data/setDataLoadingStatus');
+
+export const setError = createAction<string | null>('app/setError');

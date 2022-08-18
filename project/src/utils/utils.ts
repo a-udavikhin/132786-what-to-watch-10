@@ -1,3 +1,5 @@
+import {FilmGrades} from '../const';
+
 export function capitalize(str: string): string {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
 }
@@ -8,17 +10,21 @@ export function getStarringString(starringArr: Array<string>): string {
 
 export function getFilmGrade(rating: number): string {
   if (rating >= 0 && rating < 3)
-  {return 'Bad';}
+  {return FilmGrades.Bad;}
   if (rating >= 3 && rating < 5)
-  {return 'Normal';}
+  {return FilmGrades.Normal;}
   if (rating >= 5 && rating < 8)
-  {return 'Good';}
+  {return FilmGrades.Good;}
   if (rating >= 8 && rating < 10)
-  {return 'Very Good';}
+  {return FilmGrades.VeryGood;}
   if (rating === 10)
-  {return 'Awesome';}
+  {return FilmGrades.Awesome;}
 
   return 'Unknown';
+}
+
+export function getPlural(value: number, unit: string): string {
+  return `${value} ${unit}${value > 1 && 's'}`;
 }
 
 export function formatRunTime(runTime: number): string {

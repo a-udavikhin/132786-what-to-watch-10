@@ -4,6 +4,7 @@ import App from './components/app/app';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import {fetchFilmsAction} from './store/api-actions';
+import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(fetchFilmsAction());
 
@@ -22,6 +23,7 @@ const Settings = {
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorMessage />
       <App
         promoFilm ={{
           title: Settings.PROMO_FILM.TITLE,

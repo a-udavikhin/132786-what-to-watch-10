@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setDataLoadingStatus} from './action';
+import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setDataLoadingStatus, setError} from './action';
 import {Film} from '../types/film';
 import {FILMS_PER_PAGE} from '../const';
 
@@ -8,13 +8,15 @@ type State = {
   films: Film[],
   filmsToDisplay: number,
   isDataLoading: boolean,
+  error: string | null
 }
 
 const initialState: State = {
   genre: 'All genres',
   films: [],
   filmsToDisplay: FILMS_PER_PAGE,
-  isDataLoading: true
+  isDataLoading: true,
+  error: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -35,5 +37,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadingStatus, (state, action) => {
       state.isDataLoading = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
