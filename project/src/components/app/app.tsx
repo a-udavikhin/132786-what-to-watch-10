@@ -9,6 +9,8 @@ import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {Film, PromoFilm} from '../../types/film';
+import {useAppSelector} from '../../hooks/redux';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type AppProps = {
   promoFilm: PromoFilm,
@@ -16,6 +18,13 @@ type AppProps = {
 }
 
 function App({promoFilm, filmsData}: AppProps): JSX.Element {
+  const {isDataLoading} = useAppSelector((state) => state);
+
+  if (isDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BrowserRouter>

@@ -13,6 +13,15 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout'
+}
+
 export const MOCK_VIDEO_SRC = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm';
 export const AUTO_PLAY_DELAY_MS = 1000;
 
