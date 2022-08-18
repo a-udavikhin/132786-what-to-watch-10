@@ -46,12 +46,12 @@ function VideoPlayer({noSound, film}: VideoPlayerProps): JSX.Element {
   return (
     <div onMouseEnter={playerMouseEnterHandler} onMouseLeave={playerMouseLeaveHandler} className="small-film-card__image">
       <video
-        src={film.src}
+        src={film.previewVideoLink}
         ref={videoRef}
         width="280"
         height="175"
         muted={noSound}
-        poster={film.previewSrc}
+        poster={film.previewImage}
       >
       </video>
     </div>

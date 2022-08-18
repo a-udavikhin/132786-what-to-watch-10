@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {films} from './mocks/films';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import {fetchFilmsAction} from './store/api-actions';
@@ -29,7 +28,6 @@ root.render(
           genre: Settings.PROMO_FILM.GENRE,
           year: Settings.PROMO_FILM.YEAR
         }}
-        filmsData={films}
       />
     </Provider>
   </React.StrictMode>,

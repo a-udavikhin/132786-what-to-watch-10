@@ -17,7 +17,7 @@ function PlayerScreen({filmsData}: PlayerScreenProps): JSX.Element {
 
   return (
     <div className="player">
-      <video src={MOCK_VIDEO_SRC} className="player__video" poster={playerFilm.previewSrc}></video>
+      <video src={MOCK_VIDEO_SRC} className="player__video" poster={playerFilm.previewImage}></video>
 
       <Link to={AppRoute.Root} type="button" className="player__exit">Exit</Link>
 
@@ -37,7 +37,7 @@ function PlayerScreen({filmsData}: PlayerScreenProps): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">{playerFilm.title}</div>
+          <div className="player__name">{playerFilm.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

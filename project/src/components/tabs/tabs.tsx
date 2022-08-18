@@ -7,7 +7,7 @@ import DetailsTab from './components/details-tab/details-tab';
 import ReviewsTab from './components/reviews-tab/reviews-tab';
 
 type TabsProps = {
-  film: Film,
+  currentFilm: Film,
   filmReviews: ReviewEntry[]
 }
 
@@ -16,10 +16,10 @@ type Tab = {
   component: JSX.Element
 }
 
-function Tabs({film, filmReviews}: TabsProps): JSX.Element {
+function Tabs({currentFilm, filmReviews}: TabsProps): JSX.Element {
   const tabs: Tab[] = [
-    {name: 'overview', component: <OverviewTab key={'overview-tab'} film={film} />},
-    {name: 'details', component: <DetailsTab key={'details-tab'} film={film} />},
+    {name: 'overview', component: <OverviewTab key={'overview-tab'} currentFilm={currentFilm} />},
+    {name: 'details', component: <DetailsTab key={'details-tab'} currentFilm={currentFilm} />},
     {name: 'reviews', component: <ReviewsTab key={'reviews-tab'} filmReviews={filmReviews} />}
   ];
 

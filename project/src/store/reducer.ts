@@ -1,11 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {films} from '../mocks/films';
 import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setDataLoadingStatus} from './action';
-import {Genre, Film} from '../types/film';
+import {Film} from '../types/film';
 import {FILMS_PER_PAGE} from '../const';
 
 type State = {
-  genre: Genre,
+  genre: string,
   films: Film[],
   filmsToDisplay: number,
   isDataLoading: boolean,
@@ -13,7 +12,7 @@ type State = {
 
 const initialState: State = {
   genre: 'All genres',
-  films: films,
+  films: [],
   filmsToDisplay: FILMS_PER_PAGE,
   isDataLoading: true
 };
@@ -29,7 +28,6 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetFilmList, (state) => {
       state.genre = 'All genres';
-      state.films = films;
       state.filmsToDisplay = FILMS_PER_PAGE;
     })
     .addCase(loadFilms, (state, action) => {
