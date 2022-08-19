@@ -5,8 +5,9 @@ import {Link} from 'react-router-dom';
 import GenreList from '../../components/genre-list/genre-list';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import ShowMore from '../../components/show-more/show-more';
-import { resetFilmList } from '../../store/action';
-import { useEffect } from 'react';
+import {resetFilmList} from '../../store/action';
+import {useEffect} from 'react';
+import UserBlock from '../../components/user-block/user-block';
 
 type MainScreenProps = {
   promoFilm: PromoFilm,
@@ -40,16 +41,7 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
             </Link>
           </div>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <div className="film-card__wrap">

@@ -7,6 +7,7 @@ import {reviews} from '../../mocks/reviews';
 import FilmList from '../../components/film-list/film-list';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeGenre } from '../../store/action';
+import UserBlock from '../../components/user-block/user-block';
 
 type FilmScreenProps = {
   filmsData: Film[]
@@ -44,16 +45,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
               </Link>
             </div>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__wrap">

@@ -1,14 +1,15 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setDataLoadingStatus, setError} from './action';
+import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setDataLoadingStatus, setError, setAuthorizationStatus} from './action';
 import {Film} from '../types/film';
-import {FILMS_PER_PAGE} from '../const';
+import {AuthorizationStatus, FILMS_PER_PAGE} from '../const';
 
 type State = {
   genre: string,
   films: Film[],
   filmsToDisplay: number,
   isDataLoading: boolean,
-  error: string | null
+  error: string | null,
+  authorizationStatus: AuthorizationStatus
 }
 
 const initialState: State = {
@@ -16,7 +17,8 @@ const initialState: State = {
   films: [],
   filmsToDisplay: FILMS_PER_PAGE,
   isDataLoading: true,
-  error: null
+  error: null,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -40,5 +42,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
