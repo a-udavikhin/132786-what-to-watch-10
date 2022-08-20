@@ -1,3 +1,5 @@
+import {ReviewEntry} from './review';
+
 export type Film = {
     id: number
     name: string
@@ -22,6 +24,12 @@ export type PromoFilm = {
     title: string,
     genre: string,
     year: string
+}
+
+export type FilmDetailed = {
+    info: Film,
+    similar: Film[],
+    reviews: ReviewEntry[]
 }
 
 //export type Genre = 'All genres' | 'Comedies' | 'Crime' | 'Documentary' | 'Dramas' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thrillers';
