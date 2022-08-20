@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import MainScreen from '../../pages/main-screen/main-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
@@ -17,7 +17,7 @@ type AppProps = {
 }
 
 function App({promoFilm}: AppProps): JSX.Element {
-  const {isDataLoading, films: filmsData} = useAppSelector((state) => state);
+  const {authorizationStatus,isDataLoading, films: filmsData} = useAppSelector((state) => state);
 
   if (isDataLoading) {
     return (
@@ -39,7 +39,7 @@ function App({promoFilm}: AppProps): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth} >
+            <PrivateRoute authorizationStatus={authorizationStatus} >
               <MyListScreen filmsData={filmsData} />
             </PrivateRoute>
           }
