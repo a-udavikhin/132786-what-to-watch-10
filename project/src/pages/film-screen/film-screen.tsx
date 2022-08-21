@@ -1,5 +1,5 @@
 import {Film} from '../../types/film';
-import {useParams, Link} from 'react-router-dom';
+import {useParams, Link, useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import Tabs from '../../components/tabs/tabs';
@@ -8,15 +8,22 @@ import {useAppSelector, useAppDispatch} from '../../hooks/redux';
 import {fetchFilmDetailsAction} from '../../store/api-actions';
 import UserBlock from '../../components/user-block/user-block';
 import {useEffect} from 'react';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 type FilmScreenProps = {
   filmsData: Film[]
 }
 
+type LocationState = {
+  activeTab: string
+}
+
 
 function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
-  const {currentFilm, authorizationStatus} = useAppSelector((state) => state);
+  const locationState = useLocation().state as LocationState;
+
+  const {currentFilm, authorizationStatus, dataLoadingRequests} = useAppSelector((state) => state);
 
   const dispatch = useAppDispatch();
 
@@ -25,6 +32,9 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
 
   }, [id]);
 
+  if (dataLoadingRequests > 0) {
+    return <LoadingScreen />;
+  }
 
   if (!currentFilm) {
     return <NotFoundScreen />;
@@ -87,7 +97,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
               <img src={currentFilm.info.posterImage} alt={`${currentFilm.info.name} poster`} width="218" height="327" />
             </div>
 
-            <Tabs currentFilm={currentFilm.info} filmReviews={currentFilm.reviews}/>
+            <Tabs active={locationState?.activeTab} currentFilm={currentFilm.info} filmReviews={currentFilm.reviews}/>
           </div>
         </div>
       </section>
