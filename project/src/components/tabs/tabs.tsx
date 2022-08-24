@@ -6,24 +6,26 @@ import OverviewTab from './components/overview-tab/overview-tab';
 import DetailsTab from './components/details-tab/details-tab';
 import ReviewsTab from './components/reviews-tab/reviews-tab';
 
-type TabsProps = {
-  currentFilm: Film,
-  filmReviews: ReviewEntry[]
-}
 
 type Tab = {
   name: string,
   component: JSX.Element
 }
 
-function Tabs({currentFilm, filmReviews}: TabsProps): JSX.Element {
+type TabsProps = {
+  currentFilm: Film,
+  filmReviews: ReviewEntry[],
+  active?: string
+}
+
+function Tabs({currentFilm, filmReviews, active}: TabsProps): JSX.Element {
   const tabs: Tab[] = [
     {name: 'overview', component: <OverviewTab key={'overview-tab'} currentFilm={currentFilm} />},
     {name: 'details', component: <DetailsTab key={'details-tab'} currentFilm={currentFilm} />},
     {name: 'reviews', component: <ReviewsTab key={'reviews-tab'} filmReviews={filmReviews} />}
   ];
 
-  const [activeTab, setActiveTab] = useState(tabs[0].name);
+  const [activeTab, setActiveTab] = useState(active ?? tabs[0].name);
 
   return (
     <div className="film-card__desc">

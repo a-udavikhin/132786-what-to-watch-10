@@ -10,20 +10,13 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {PromoFilm} from '../../types/film';
 import {useAppSelector} from '../../hooks/redux';
-import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type AppProps = {
   promoFilm: PromoFilm,
 }
 
 function App({promoFilm}: AppProps): JSX.Element {
-  const {authorizationStatus,isDataLoading, films: filmsData} = useAppSelector((state) => state);
-
-  if (isDataLoading) {
-    return (
-      <LoadingScreen />
-    );
-  }
+  const {authorizationStatus, films: filmsData} = useAppSelector((state) => state);
 
   return (
     <BrowserRouter>
@@ -50,7 +43,11 @@ function App({promoFilm}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewScreen filmsData={filmsData} />}
+          element={
+            <PrivateRoute authorizationStatus={authorizationStatus} >
+              <AddReviewScreen filmsData={filmsData} />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Player}

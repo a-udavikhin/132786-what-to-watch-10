@@ -5,3 +5,8 @@ export type UserData = {
   name: string
   token: string
 }
+
+export type UserType = {
+    id: number
+    name: string
+}
