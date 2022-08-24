@@ -1,12 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {Film} from '../types/film';
-import {loadFilms, setAuthorizationStatus, setCurrentFilmData, incDataLoadingRequests, decDataLoadingRequests, setError} from './action';
+import {loadFilms, setAuthorizationStatus, setCurrentFilmData, setIsFilmsLoading, setIsFilmDetailsLoading, setError} from './action';
 import {AppDispatch, State} from '../types/state';
 import {AxiosInstance} from 'axios';
 import {store} from '.';
 import {dropToken, saveToken} from '../services/token';
-import {UserData} from '../types/user-data';
+import {UserData} from '../types/user';
 import {AuthData} from '../types/auth-data';
 import {handleError} from '../services/handle-error';
 import {ReviewEntry} from '../types/review';
@@ -21,12 +21,12 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Film[]>(APIRoute.Films);
-      dispatch(incDataLoadingRequests());
+      dispatch(setIsFilmsLoading(true));
       dispatch(loadFilms(data));
     } catch(error) {
       handleError((error as Error).message);
     } finally {
-      dispatch(decDataLoadingRequests());
+      dispatch(setIsFilmsLoading(false));
     }
   }
 );
@@ -39,7 +39,7 @@ export const fetchFilmDetailsAction = createAsyncThunk<void, number, {
   'data/fetchFilmDetails',
   async (filmId, {dispatch, extra: api}) => {
     try {
-      dispatch(incDataLoadingRequests());
+      dispatch(setIsFilmDetailsLoading(true));
       const {data: info} = await api.get<Film>(`${APIRoute.Films}/${filmId}`);
       const {data: similar} = await api.get<Film[]>(`${APIRoute.Films}/${filmId}/similar`);
       const {data: reviews} = await api.get<ReviewEntry[]>(`${APIRoute.Comments}/${filmId}`);
@@ -47,7 +47,7 @@ export const fetchFilmDetailsAction = createAsyncThunk<void, number, {
     } catch(error) {
       handleError((error as Error).message);
     } finally {
-      dispatch(decDataLoadingRequests());
+      dispatch(setIsFilmDetailsLoading(false));
     }
   }
 );

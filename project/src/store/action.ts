@@ -10,9 +10,9 @@ export const resetFilmList = createAction('films/resetFilmList');
 
 export const loadFilms = createAction<Film[]>('data/loadFilms');
 
-export const incDataLoadingRequests = createAction('data/incDataLoadingRequests');
+export const setIsFilmsLoading = createAction<boolean>('data/setIsFilmsLoading');
 
-export const decDataLoadingRequests = createAction('data/decDataLoadingRequests');
+export const setIsFilmDetailsLoading = createAction<boolean>('data/setIsFilmDetailsLoading');
 
 export const setError = createAction<string | null>('app/setError');
 

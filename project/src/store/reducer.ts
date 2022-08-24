@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setError, setAuthorizationStatus, setCurrentFilmData, incDataLoadingRequests, decDataLoadingRequests} from './action';
+import {changeGenre, loadFilms, resetFilmList, showMoreFilms, setError, setAuthorizationStatus, setCurrentFilmData, setIsFilmsLoading, setIsFilmDetailsLoading} from './action';
 import {Film, FilmDetailed} from '../types/film';
 import {AuthorizationStatus, FILMS_PER_PAGE} from '../const';
 
@@ -7,7 +7,8 @@ type State = {
   genre: string,
   films: Film[],
   filmsToDisplay: number,
-  dataLoadingRequests: number,
+  isFilmsLoading: boolean,
+  isFilmDetailsLoading: boolean,
   error: string | null,
   authorizationStatus: AuthorizationStatus,
   currentFilm: FilmDetailed | null
@@ -17,7 +18,8 @@ const initialState: State = {
   genre: 'All genres',
   films: [],
   filmsToDisplay: FILMS_PER_PAGE,
-  dataLoadingRequests: 0,
+  isFilmsLoading: false,
+  isFilmDetailsLoading: false,
   error: null,
   authorizationStatus: AuthorizationStatus.Unknown,
   currentFilm: null
@@ -39,11 +41,11 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
     })
-    .addCase(incDataLoadingRequests, (state) => {
-      state.dataLoadingRequests += 1;
+    .addCase(setIsFilmsLoading, (state, action) => {
+      state.isFilmsLoading = action.payload;
     })
-    .addCase(decDataLoadingRequests, (state) => {
-      state.dataLoadingRequests -= 1;
+    .addCase(setIsFilmDetailsLoading, (state, action) => {
+      state.isFilmDetailsLoading = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;

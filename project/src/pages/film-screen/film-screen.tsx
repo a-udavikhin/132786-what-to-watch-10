@@ -23,7 +23,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
   const locationState = useLocation().state as LocationState;
 
-  const {currentFilm, authorizationStatus, dataLoadingRequests} = useAppSelector((state) => state);
+  const {currentFilm, authorizationStatus, isFilmDetailsLoading} = useAppSelector((state) => state);
 
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
 
   }, [id]);
 
-  if (dataLoadingRequests > 0) {
+  if (isFilmDetailsLoading) {
     return <LoadingScreen />;
   }
 
