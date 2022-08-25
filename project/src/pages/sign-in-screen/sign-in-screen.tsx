@@ -1,10 +1,11 @@
 import {AppRoute} from '../../const';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {BaseSyntheticEvent, useState, FormEvent} from 'react';
 import {store} from '../../store';
 import {loginAction} from '../../store/api-actions';
 import {handleError} from '../../services/handle-error';
 import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
 
 function SignInScreen(): JSX.Element {
   const navigate = useNavigate();
@@ -32,17 +33,10 @@ function SignInScreen(): JSX.Element {
 
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to={AppRoute.Root} className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
 
+      <Header className='user-page__head' noUserBlock>
         <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      </Header>
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>

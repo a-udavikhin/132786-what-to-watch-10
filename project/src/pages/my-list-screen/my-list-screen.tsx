@@ -1,9 +1,7 @@
 import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
 
 type MyListScreenProps = {
   filmsData: Film[]
@@ -12,18 +10,10 @@ type MyListScreenProps = {
 function MyListScreen({filmsData}: MyListScreenProps): JSX.Element {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to={AppRoute.Root} className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
 
+      <Header className='user-page__head'>
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
-        <UserBlock />
-      </header>
+      </Header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

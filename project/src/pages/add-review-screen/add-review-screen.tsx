@@ -3,7 +3,7 @@ import {useParams, Link} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {AppRoute} from '../../const';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
-import UserBlock from '../../components/user-block/user-block';
+import Header from '../../components/header/header';
 
 type AddReviewScreenProps = {
   filmsData: Film[]
@@ -26,15 +26,7 @@ function AddReviewScreen({filmsData}: AddReviewScreenProps): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <Link to={AppRoute.Root} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+        <Header>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
@@ -45,9 +37,7 @@ function AddReviewScreen({filmsData}: AddReviewScreenProps): JSX.Element {
               </li>
             </ul>
           </nav>
-
-          <UserBlock />
-        </header>
+        </Header>
 
         <div className="film-card__poster film-card__poster--small">
           <img src={reviewedFilm.posterImage} alt={`${reviewedFilm.name} poster`} width="218" height="327" />

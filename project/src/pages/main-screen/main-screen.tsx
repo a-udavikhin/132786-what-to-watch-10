@@ -7,8 +7,8 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import ShowMore from '../../components/show-more/show-more';
 import {resetFilmList} from '../../store/action';
 import {useEffect} from 'react';
-import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
 
 type MainScreenProps = {
   promoFilm: PromoFilm,
@@ -33,17 +33,7 @@ function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <Link to={AppRoute.Root} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <UserBlock />
-        </header>
+        <Header className='film-card__head' />
 
         <div className="film-card__wrap">
           <div className="film-card__info">

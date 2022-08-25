@@ -6,10 +6,10 @@ import Tabs from '../../components/tabs/tabs';
 import FilmList from '../../components/film-list/film-list';
 import {useAppSelector, useAppDispatch} from '../../hooks/redux';
 import {fetchFilmDetailsAction} from '../../store/api-actions';
-import UserBlock from '../../components/user-block/user-block';
 import {useEffect} from 'react';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
 
 type FilmScreenProps = {
   filmsData: Film[]
@@ -52,17 +52,7 @@ function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-            <div className="logo">
-              <Link to={AppRoute.Root} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <UserBlock />
-          </header>
+          <Header className='film-card__head' />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
