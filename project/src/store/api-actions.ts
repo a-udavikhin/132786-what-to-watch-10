@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {Film} from '../types/film';
-import {loadFilms, setAuthorizationStatus, setCurrentFilmData, setIsFilmsLoading, setIsFilmDetailsLoading, setError} from './action';
+import {loadFilms, setAuthorizationStatus, setCurrentFilmData, setIsFilmsLoading, setIsFilmDetailsLoading, setError, loadPromoFilm} from './action';
 import {AppDispatch, State} from '../types/state';
 import {AxiosInstance} from 'axios';
 import {store} from '.';
@@ -48,6 +48,22 @@ export const fetchFilmDetailsAction = createAsyncThunk<void, number, {
       handleError((error as Error).message);
     } finally {
       dispatch(setIsFilmDetailsLoading(false));
+    }
+  }
+);
+
+export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchPromoFilm',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<Film>(APIRoute.Promo);
+      dispatch(loadPromoFilm(data));
+    } catch(error) {
+      handleError((error as Error).message);
     }
   }
 );

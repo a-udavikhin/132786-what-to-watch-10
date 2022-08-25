@@ -8,14 +8,9 @@ import FilmScreen from '../../pages/film-screen/film-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import {PromoFilm} from '../../types/film';
 import {useAppSelector} from '../../hooks/redux';
 
-type AppProps = {
-  promoFilm: PromoFilm,
-}
-
-function App({promoFilm}: AppProps): JSX.Element {
+function App(): JSX.Element {
   const {authorizationStatus, films: filmsData} = useAppSelector((state) => state);
 
   return (
@@ -23,7 +18,7 @@ function App({promoFilm}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen promoFilm={promoFilm} />}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.SignIn}

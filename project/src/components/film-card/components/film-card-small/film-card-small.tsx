@@ -1,14 +1,14 @@
-import {Film} from '../../types/film';
+import {Film} from '../../../../types/film';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import VideoPlayer from '../video-player/video-player';
+import {AppRoute} from '../../../../const';
+import VideoPlayer from '../../../video-player/video-player';
 
-type FilmCardProps = {
+type FilmCardSmallProps = {
     film: Film,
     onMouseOverHandler: React.MouseEventHandler
 }
 
-function FilmCard({film, onMouseOverHandler}: FilmCardProps): JSX.Element {
+function FilmCardSmall({film, onMouseOverHandler}: FilmCardSmallProps): JSX.Element {
   return (
     <article onMouseOver={onMouseOverHandler} className="small-film-card catalog__films-card">
       <VideoPlayer noSound film={film} />
@@ -19,4 +19,4 @@ function FilmCard({film, onMouseOverHandler}: FilmCardProps): JSX.Element {
   );
 }
 
-export default FilmCard;
+export default FilmCardSmall;

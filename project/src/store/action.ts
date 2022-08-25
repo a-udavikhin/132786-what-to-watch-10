@@ -10,6 +10,8 @@ export const resetFilmList = createAction('films/resetFilmList');
 
 export const loadFilms = createAction<Film[]>('data/loadFilms');
 
+export const loadPromoFilm = createAction<Film>('data/loadPromoFilm');
+
 export const setIsFilmsLoading = createAction<boolean>('data/setIsFilmsLoading');
 
 export const setIsFilmDetailsLoading = createAction<boolean>('data/setIsFilmDetailsLoading');
