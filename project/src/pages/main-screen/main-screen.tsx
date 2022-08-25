@@ -2,22 +2,28 @@ import FilmList from '../../components/film-list/film-list';
 import GenreList from '../../components/genre-list/genre-list';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import ShowMore from '../../components/show-more/show-more';
-import {resetFilmList} from '../../store/action';
 import {useEffect} from 'react';
 import Footer from '../../components/footer/footer';
 import FilmCard from '../../components/film-card/components/film-card/film-card';
 import {fetchPromoFilmAction} from './../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
+import {getFilms, getIsFilmsLoading, getPromoFilm} from '../../store/films-data/selectors';
+import {getFilmsToDisplay, getGenre} from '../../store/films-process/selectors';
+import {filmsProcess} from '../../store/films-process/films-process';
 
 function MainScreen(): JSX.Element {
-  const {films: filmsData, genre, filmsToDisplay, promoFilm, isFilmsLoading} = useAppSelector((state) => state);
+  const filmsData = useAppSelector(getFilms);
+  const genre = useAppSelector(getGenre);
+  const filmsToDisplay = useAppSelector(getFilmsToDisplay);
+  const promoFilm = useAppSelector(getPromoFilm);
+  const isFilmsLoading = useAppSelector(getIsFilmsLoading);
   const filteredFilms = genre === 'All genres' ? filmsData : filmsData.filter((film) => film.genre === genre);
   const dispatch = useAppDispatch();
 
 
   useEffect(() => {
     dispatch(fetchPromoFilmAction());
-    dispatch(resetFilmList());
+    dispatch(filmsProcess.actions.resetFilmList());
   }, []);
 
   if (!promoFilm || isFilmsLoading) {

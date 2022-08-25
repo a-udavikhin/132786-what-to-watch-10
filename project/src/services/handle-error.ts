@@ -1,9 +1,8 @@
 import {store} from '../store';
-import {setError} from '../store/action';
-import {clearErrorAction} from '../store/api-actions';
+import {filmsProcess} from '../store/films-process/films-process';
 
 
 export const handleError = (message: string): void => {
-  store.dispatch(setError(message));
-  store.dispatch(clearErrorAction());
+  store.dispatch(filmsProcess.actions.setError(message));
+  store.dispatch(filmsProcess.actions.clearError());
 };

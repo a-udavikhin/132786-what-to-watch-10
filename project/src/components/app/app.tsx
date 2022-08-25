@@ -9,9 +9,12 @@ import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {useAppSelector} from '../../hooks/redux';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getFilms} from '../../store/films-data/selectors';
 
 function App(): JSX.Element {
-  const {authorizationStatus, films: filmsData} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const filmsData = useAppSelector(getFilms);
 
   return (
     <BrowserRouter>

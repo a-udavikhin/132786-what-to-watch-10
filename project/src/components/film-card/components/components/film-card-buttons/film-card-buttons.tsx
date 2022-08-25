@@ -2,6 +2,7 @@ import {AppRoute, AuthorizationStatus} from '../../../../../const';
 import {Link} from 'react-router-dom';
 import {Film} from '../../../../../types/film';
 import {useAppSelector} from '../../../../../hooks/redux';
+import {getAuthorizationStatus} from '../../../../../store/user-process/selectors';
 
 type FilmCardButtonsProps = {
   film: Film,
@@ -10,7 +11,9 @@ type FilmCardButtonsProps = {
 
 
 function FilmCardButtons({film, isShowAddReviewButton}: FilmCardButtonsProps): JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
 
   return (
     <div className="film-card__buttons">

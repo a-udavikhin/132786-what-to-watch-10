@@ -8,6 +8,7 @@ import {useEffect} from 'react';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Footer from '../../components/footer/footer';
 import FilmCardFull from '../../components/film-card/components/film-card-full/film-card-full';
+import {getCurrentFilm, getIsFilmDetailsLoading} from '../../store/films-data/selectors';
 
 type FilmScreenProps = {
   filmsData: Film[]
@@ -17,7 +18,8 @@ type FilmScreenProps = {
 function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
 
-  const {currentFilm, isFilmDetailsLoading} = useAppSelector((state) => state);
+  const currentFilm = useAppSelector(getCurrentFilm);
+  const isFilmDetailsLoading = useAppSelector(getIsFilmDetailsLoading);
 
   const dispatch = useAppDispatch();
 
