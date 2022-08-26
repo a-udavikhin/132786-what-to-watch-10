@@ -2,6 +2,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {filmsProcess} from '../../store/films-process/films-process';
 import {getGenre} from '../../store/films-process/selectors';
 import {Film} from '../../types/film';
+import {memo} from 'react';
 
 type GenreListProps = {
     filmsData: Film[]
@@ -23,4 +24,4 @@ function GenreList({filmsData}: GenreListProps): JSX.Element {
   );
 }
 
-export default GenreList;
+export default memo(GenreList);

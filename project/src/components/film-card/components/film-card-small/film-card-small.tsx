@@ -5,12 +5,11 @@ import VideoPlayer from '../../../video-player/video-player';
 
 type FilmCardSmallProps = {
     film: Film,
-    onMouseOverHandler: React.MouseEventHandler
 }
 
-function FilmCardSmall({film, onMouseOverHandler}: FilmCardSmallProps): JSX.Element {
+function FilmCardSmall({film}: FilmCardSmallProps): JSX.Element {
   return (
-    <article onMouseOver={onMouseOverHandler} className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card">
       <VideoPlayer noSound film={film} />
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>

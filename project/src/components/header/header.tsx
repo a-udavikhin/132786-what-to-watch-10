@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { memo, PropsWithChildren } from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import UserBlock from '../user-block/user-block';
@@ -26,4 +26,4 @@ function Header({className, noUserBlock, children}: HeaderProps): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);

@@ -1,6 +1,7 @@
 import Header from '../../../header/header';
 import {Film} from '../../../../types/film';
 import FilmCardDescription from './../components/film-card-description/film-card-description';
+import { memo } from 'react';
 
 type FilmCardProps = {
   film: Film
@@ -30,4 +31,4 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
   );
 }
 
-export default FilmCard;
+export default memo(FilmCard);

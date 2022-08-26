@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
@@ -19,4 +20,4 @@ function Footer(): JSX.Element {
   );
 }
 
-export default Footer;
+export default memo(Footer);

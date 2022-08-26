@@ -3,6 +3,7 @@ import {FilmDetailed} from '../../../../types/film';
 import {useLocation} from 'react-router-dom';
 import FilmCardDescription from './../components/film-card-description/film-card-description';
 import Tabs from '../../../tabs/tabs';
+import { memo } from 'react';
 
 type FilmCardFullProps = {
   filmDetailed: FilmDetailed
@@ -44,4 +45,4 @@ function FilmCardFull({filmDetailed}: FilmCardFullProps): JSX.Element {
   );
 }
 
-export default FilmCardFull;
+export default memo(FilmCardFull);
