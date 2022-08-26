@@ -8,16 +8,16 @@ import FilmCard from '../../components/film-card/components/film-card/film-card'
 import {fetchPromoFilmAction} from './../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import {getFilms, getIsFilmsLoading, getPromoFilm} from '../../store/films-data/selectors';
-import {getFilmsToDisplay, getGenre} from '../../store/films-process/selectors';
+import {getFilmsToDisplay} from '../../store/films-process/selectors';
 import {filmsProcess} from '../../store/films-process/films-process';
+import {filterFilms} from '../../store/selectors';
 
 function MainScreen(): JSX.Element {
   const filmsData = useAppSelector(getFilms);
-  const genre = useAppSelector(getGenre);
   const filmsToDisplay = useAppSelector(getFilmsToDisplay);
   const promoFilm = useAppSelector(getPromoFilm);
   const isFilmsLoading = useAppSelector(getIsFilmsLoading);
-  const filteredFilms = genre === 'All genres' ? filmsData : filmsData.filter((film) => film.genre === genre);
+  const filteredFilms = useAppSelector(filterFilms);
   const dispatch = useAppDispatch();
 
 

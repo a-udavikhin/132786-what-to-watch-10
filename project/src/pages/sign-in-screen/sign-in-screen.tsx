@@ -3,7 +3,6 @@ import {useNavigate} from 'react-router-dom';
 import {BaseSyntheticEvent, useState, FormEvent} from 'react';
 import {store} from '../../store';
 import {loginAction} from '../../store/api-actions';
-import {handleError} from '../../services/handle-error';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
@@ -27,7 +26,7 @@ function SignInScreen(): JSX.Element {
       store.dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
       navigate(AppRoute.Root);
     } else {
-      handleError('Login and password cannot be empty!');
+      //handleError('Login and password cannot be empty!');
     }
   };
 

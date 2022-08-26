@@ -1,11 +1,9 @@
-import {NameSpace, FILMS_PER_PAGE, TIMEOUT_SHOW_ERROR} from '../../const';
-import {fetchFilmsAction} from '../api-actions';
+import {NameSpace, FILMS_PER_PAGE} from '../../const';
 import {FilmsProcess} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: FilmsProcess = {
   genre: 'All genres',
-  error: null,
   filmsToDisplay: FILMS_PER_PAGE
 };
 
@@ -24,21 +22,5 @@ export const filmsProcess = createSlice({
       state.genre = 'All genres';
       state.filmsToDisplay = FILMS_PER_PAGE;
     },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
-    clearError: (state) => {
-      setTimeout(
-        () => {state.error = null;},
-        TIMEOUT_SHOW_ERROR,
-      );
-    },
-
-  },
-  extraReducers(builder) {
-    builder
-      .addCase(fetchFilmsAction.rejected, (state, action) => {
-        state.error = action.error.message ?? null;
-      });
   }
 });

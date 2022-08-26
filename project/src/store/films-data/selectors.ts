@@ -2,6 +2,8 @@ import {NameSpace} from '../../const';
 import {Film, FilmDetailed} from '../../types/film';
 import {State} from '../../types/state';
 
+export const getFilmsDataError = (state: State): (string | null) => state[NameSpace.Data].error;
+
 export const getFilms = (state: State): Film[] => state[NameSpace.Data].films;
 
 export const getPromoFilm = (state: State): (Film | null) => state[NameSpace.Data].promoFilm;

@@ -7,10 +7,12 @@ export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export type UserProcess = {
+  error: string | null,
   authorizationStatus: AuthorizationStatus
 }
 
 export type FilmsData = {
+  error: string | null,
   films: Film[],
   promoFilm: Film | null,
   currentFilm: FilmDetailed | null,
@@ -21,6 +23,5 @@ export type FilmsData = {
 
 export type FilmsProcess = {
   genre: string,
-  error: string | null,
   filmsToDisplay: number
 }

@@ -1,9 +1,10 @@
-import {fetchFilmDetailsAction, fetchFilmsAction, fetchPromoFilmAction} from '../api-actions';
+import {fetchFilmDetailsAction, fetchFilmsAction, fetchPromoFilmAction, sendReviewAction} from '../api-actions';
 import {NameSpace} from '../../const';
 import {FilmsData} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: FilmsData = {
+  error: null,
   films: [],
   promoFilm: null,
   currentFilm: null,
@@ -15,7 +16,11 @@ const initialState: FilmsData = {
 export const filmsData = createSlice({
   name: NameSpace.Data,
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFilmsAction.pending, (state) => {
@@ -24,6 +29,9 @@ export const filmsData = createSlice({
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films = action.payload;
         state.isFilmsLoading = false;
+      })
+      .addCase(fetchFilmsAction.rejected, (state, action) => {
+        state.error = action.error.message ?? null;
       })
       .addCase(fetchFilmDetailsAction.pending, (state) => {
         state.isFilmDetailsLoading = true;
@@ -38,6 +46,9 @@ export const filmsData = createSlice({
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
         state.isPromoFilmLoading = false;
+      })
+      .addCase(sendReviewAction.rejected, (state, action) => {
+        state.error = action.error.message ?? null;
       });
   }
 });
