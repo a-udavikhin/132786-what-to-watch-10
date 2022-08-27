@@ -8,7 +8,8 @@ export type AppDispatch = typeof store.dispatch;
 
 export type UserProcess = {
   error: string | null,
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  isAuthCheckProcessing: boolean
 }
 
 export type FilmsData = {

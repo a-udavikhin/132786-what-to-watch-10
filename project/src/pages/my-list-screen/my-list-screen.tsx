@@ -1,13 +1,12 @@
-import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import {useAppSelector} from '../../hooks/redux';
+import {getFilms} from '../../store/films-data/selectors';
 
-type MyListScreenProps = {
-  filmsData: Film[]
-}
+function MyListScreen(): JSX.Element {
+  const filmsData = useAppSelector(getFilms);
 
-function MyListScreen({filmsData}: MyListScreenProps): JSX.Element {
   return (
     <div className="user-page">
 

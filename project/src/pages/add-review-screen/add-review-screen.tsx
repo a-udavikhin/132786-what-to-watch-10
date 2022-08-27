@@ -1,16 +1,14 @@
-import {Film} from '../../types/film';
 import {useParams, Link} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {AppRoute} from '../../const';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Header from '../../components/header/header';
+import {useAppSelector} from '../../hooks/redux';
+import {getFilms} from '../../store/films-data/selectors';
 
-type AddReviewScreenProps = {
-  filmsData: Film[]
-}
-
-function AddReviewScreen({filmsData}: AddReviewScreenProps): JSX.Element {
+function AddReviewScreen(): JSX.Element {
   const {id} = useParams();
+  const filmsData = useAppSelector(getFilms);
   const reviewedFilm = filmsData.find((film) => film.id === Number(id));
 
   if (!reviewedFilm) {

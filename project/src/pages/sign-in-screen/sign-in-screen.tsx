@@ -5,6 +5,7 @@ import {store} from '../../store';
 import {loginAction} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import {userProcess} from '../../store/user-process/user-process';
 
 function SignInScreen(): JSX.Element {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function SignInScreen(): JSX.Element {
       store.dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
       navigate(AppRoute.Root);
     } else {
-      //handleError('Login and password cannot be empty!');
+      store.dispatch(userProcess.actions.setError('Login and password cannot be empty!'));
     }
   };
 

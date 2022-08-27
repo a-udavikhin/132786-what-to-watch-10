@@ -1,4 +1,3 @@
-import {Film} from '../../types/film';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import FilmList from '../../components/film-list/film-list';
@@ -10,12 +9,7 @@ import Footer from '../../components/footer/footer';
 import FilmCardFull from '../../components/film-card/components/film-card-full/film-card-full';
 import {getCurrentFilm, getIsFilmDetailsLoading} from '../../store/films-data/selectors';
 
-type FilmScreenProps = {
-  filmsData: Film[]
-}
-
-
-function FilmScreen({filmsData}: FilmScreenProps): JSX.Element {
+function FilmScreen(): JSX.Element {
   const {id} = useParams();
 
   const currentFilm = useAppSelector(getCurrentFilm);

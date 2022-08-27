@@ -1,14 +1,12 @@
-import {Film} from '../../types/film';
 import {useParams, Link} from 'react-router-dom';
 import {AppRoute, MOCK_VIDEO_SRC} from '../../const';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
+import { useAppSelector } from '../../hooks/redux';
+import {getFilms} from '../../store/films-data/selectors';
 
-type PlayerScreenProps = {
-  filmsData: Film[]
-}
-
-function PlayerScreen({filmsData}: PlayerScreenProps): JSX.Element {
+function PlayerScreen(): JSX.Element {
   const {id} = useParams();
+  const filmsData = useAppSelector(getFilms);
   const playerFilm = filmsData.find((film) => film.id === Number(id));
 
   if (!playerFilm) {

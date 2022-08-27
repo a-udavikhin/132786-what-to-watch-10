@@ -8,13 +8,8 @@ import FilmScreen from '../../pages/film-screen/film-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import {useAppSelector} from '../../hooks/redux';
-import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import {getFilms} from '../../store/films-data/selectors';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const filmsData = useAppSelector(getFilms);
 
   return (
     <BrowserRouter>
@@ -30,26 +25,26 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={authorizationStatus} >
-              <MyListScreen filmsData={filmsData} />
+            <PrivateRoute >
+              <MyListScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen filmsData={filmsData} />}
+          element={<FilmScreen />}
         />
         <Route
           path={AppRoute.AddReview}
           element={
-            <PrivateRoute authorizationStatus={authorizationStatus} >
-              <AddReviewScreen filmsData={filmsData} />
+            <PrivateRoute >
+              <AddReviewScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen filmsData={filmsData} />}
+          element={<PlayerScreen />}
         />
         <Route
           path="*"
