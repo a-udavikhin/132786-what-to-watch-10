@@ -13,25 +13,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const Settings = {
-  PROMO_FILM : {
-    TITLE: 'The Grand Budapest Hotel',
-    GENRE: 'Drama',
-    YEAR: '2014'
-  }
-};
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ErrorMessage />
-      <App
-        promoFilm ={{
-          title: Settings.PROMO_FILM.TITLE,
-          genre: Settings.PROMO_FILM.GENRE,
-          year: Settings.PROMO_FILM.YEAR
-        }}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

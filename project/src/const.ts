@@ -30,6 +30,12 @@ export enum FilmGrades {
   Awesome = 'Awesome'
 }
 
+export enum NameSpace {
+  Data = 'DATA',
+  Films = 'FILMS',
+  User = 'USER'
+}
+
 export const MOCK_VIDEO_SRC = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm';
 export const AUTO_PLAY_DELAY_MS = 1000;
 
@@ -38,4 +44,4 @@ export const REVIEWS_PER_COL = 3;
 export const FILMS_PER_PAGE = 8;
 export const SIMILAR_FILMS_LIMIT = 4;
 
-export const TIMEOUT_SHOW_ERROR = 3000;
+export const TIMEOUT_SHOW_ERROR_MS = 3000;

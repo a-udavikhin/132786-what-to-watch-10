@@ -1,19 +1,17 @@
-import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film';
-import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/redux';
 import {SIMILAR_FILMS_LIMIT} from '../../const';
+import FilmCardSmall from '../film-card/components/film-card-small/film-card-small';
+import {getFilmsToDisplay} from '../../store/films-process/selectors';
 
 type FilmListProps = {
   filmsData: Film[]
 }
 
 function FilmList({filmsData}: FilmListProps): JSX.Element {
-  const [/*activeFilm*/, setActiveFilm] = useState<Film | null>(null);
   const {id} = useParams();
-
-  const {filmsToDisplay} = useAppSelector((state) => state);
+  const filmsToDisplay = useAppSelector(getFilmsToDisplay);
 
   let filmsOutput = filmsData;
 
@@ -29,8 +27,7 @@ function FilmList({filmsData}: FilmListProps): JSX.Element {
   return (
     <div className="catalog__films-list">
       {filmsOutput.map((film) => (
-        <FilmCard
-          onMouseOverHandler={() => setActiveFilm(film)}
+        <FilmCardSmall
           key={film.id}
           film={film}
         />))}
