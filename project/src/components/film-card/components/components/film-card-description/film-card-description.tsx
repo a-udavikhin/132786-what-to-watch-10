@@ -15,7 +15,7 @@ function FilmCardDescription({film, isShowAddReviewButton}: FilmCardDescriptionP
         <span className="film-card__year">{film.released}</span>
       </p>
 
-      <FilmCardButtons film={film} isShowAddReviewButton />
+      <FilmCardButtons film={film} isShowAddReviewButton={isShowAddReviewButton} />
     </div>
   );
 }

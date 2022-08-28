@@ -10,10 +10,12 @@ type FilmCardSmallProps = {
 function FilmCardSmall({film}: FilmCardSmallProps): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
-      <PreviewPlayer noSound film={film} />
-      <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>
-      </h3>
+      <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>
+        <PreviewPlayer noSound film={film} />
+        <h3 className="small-film-card__title">
+          {film.name}
+        </h3>
+      </Link>
     </article>
   );
 }
