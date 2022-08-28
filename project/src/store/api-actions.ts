@@ -8,6 +8,7 @@ import {UserData} from '../types/user';
 import {AuthData} from '../types/auth-data';
 import {ReviewEntry} from '../types/review';
 import {CommentData} from '../types/comment-data';
+import { FavoriteData } from '../types/favorite-data';
 
 export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   dispatch: AppDispatch,
@@ -50,6 +51,19 @@ export const fetchPromoFilmAction = createAsyncThunk<Film, undefined, {
   }
 );
 
+export const fetchFavoriteFilmsAction = createAsyncThunk<Film[], undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFavoriteFilms',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(APIRoute.Favorite);
+
+    return data;
+  }
+);
+
 export const sendReviewAction = createAsyncThunk<ReviewEntry[], CommentData, {
   dispatch: AppDispatch,
   state: State,
@@ -63,7 +77,20 @@ export const sendReviewAction = createAsyncThunk<ReviewEntry[], CommentData, {
   }
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const changeIsFavoriteStatusAction = createAsyncThunk<Film, FavoriteData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changeIsFavoriteStatus',
+  async({filmId, currentStatus}, {dispatch, extra: api}) => {
+    const {data} = await api.post(`${APIRoute.Favorite}/${filmId}/${currentStatus ? 0 : 1}`);
+
+    return data;
+  }
+);
+
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -71,9 +98,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   'user/login',
   async({email, password}, {dispatch, extra: api}) => {
 
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
 
+    return data;
   }
 );
 
@@ -89,14 +117,16 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
-    await api.get(APIRoute.Login);
+    const {data} = await api.get(APIRoute.Login);
+
+    return data;
   }
 );
 

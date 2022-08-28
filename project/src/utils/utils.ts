@@ -32,3 +32,14 @@ export function formatRunTime(runTime: number): string {
   const minutes = runTime % 60;
   return (hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`);
 }
+
+export const formatTimeUnit = (value: number): string => value < 10 ? String(value).padStart(2, '0') : String(value);
+
+export function formatPlayerTime(playerTime: number): string {
+  const hours = playerTime / (60 * 60);
+  const minutes = playerTime % (60 * 60) / 60;
+  const seconds = playerTime - hours - minutes;
+  return (`-${Math.trunc(hours) > 0 ? `${formatTimeUnit(Math.trunc(hours))}:` : ''}${formatTimeUnit(Math.trunc(minutes))}:${formatTimeUnit(Math.ceil(seconds))}`);
+}
+
+export const getVideoProgress = (currentTime: number, duration: number): number => currentTime / duration * 100;

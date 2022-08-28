@@ -3,6 +3,7 @@ import {useParams, useNavigate} from 'react-router-dom';
 import {store} from '../../store';
 import {sendReviewAction} from '../../store/api-actions';
 import {AppRoute} from '../../const';
+import './add-review-form.css';
 
 function AddReviewForm(): JSX.Element {
   const {id} = useParams();

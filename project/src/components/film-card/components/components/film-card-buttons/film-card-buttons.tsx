@@ -1,8 +1,11 @@
 import {AppRoute, AuthorizationStatus} from '../../../../../const';
 import {Link} from 'react-router-dom';
 import {Film} from '../../../../../types/film';
-import {useAppSelector} from '../../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
 import {getAuthorizationStatus} from '../../../../../store/user-process/selectors';
+import {getFavoriteFilms} from '../../../../../store/films-data/selectors';
+import {changeIsFavoriteStatusAction} from '../../../../../store/api-actions';
+import {useState} from 'react';
 
 type FilmCardButtonsProps = {
   film: Film,
@@ -11,9 +14,18 @@ type FilmCardButtonsProps = {
 
 
 function FilmCardButtons({film, isShowAddReviewButton}: FilmCardButtonsProps): JSX.Element {
+  const [currentStatus, setCurrentStatus] = useState(film.isFavorite);
+  const dispatch = useAppDispatch();
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favorites = useAppSelector(getFavoriteFilms);
 
+  const handleIsFavoriteToggle = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(changeIsFavoriteStatusAction({filmId: film.id, currentStatus: currentStatus}));
+      setCurrentStatus(!currentStatus);
+    }
+  };
 
   return (
     <div className="film-card__buttons">
@@ -23,13 +35,19 @@ function FilmCardButtons({film, isShowAddReviewButton}: FilmCardButtonsProps): J
         </svg>
         <span>Play</span>
       </Link>
-      <Link to={AppRoute.MyList} className="btn btn--list film-card__button" type="button">
-        <svg viewBox="0 0 19 20" width="19" height="20">
-          <use xlinkHref="#add"></use>
-        </svg>
+      <button className="btn btn--list film-card__button" type="button" onClick={handleIsFavoriteToggle}>
+        {currentStatus
+          ?
+          <svg viewBox="0 0 18 14" width="18" height="14">
+            <use xlinkHref="#in-list"></use>
+          </svg>
+          :
+          <svg viewBox="0 0 19 20" width="19" height="20">
+            <use xlinkHref="#add"></use>
+          </svg> }
         <span>My list</span>
-        <span className="film-card__count">9</span>
-      </Link>
+        <span className="film-card__count">{favorites.length}</span>
+      </button>
       {authorizationStatus === AuthorizationStatus.Auth && isShowAddReviewButton && <Link to={AppRoute.AddReview.replace(':id', String(film.id))} className="btn film-card__button">Add review</Link>}
     </div>
   );

@@ -1,27 +1,27 @@
 import {useRef, useEffect, useState} from 'react';
-import {Film} from '../../types/film';
-import {AUTO_PLAY_DELAY_MS} from '../../const';
+import {Film} from '../../../types/film';
+import {AUTO_PLAY_DELAY_MS} from '../../../const';
 
-type VideoPlayerProps = {
+type PreviewPlayerProps = {
   noSound: boolean,
   film: Film
 }
 
-function VideoPlayer({noSound, film}: VideoPlayerProps): JSX.Element {
+function PreviewPlayer({noSound, film}: PreviewPlayerProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playerHoverTimer, setPlayerHoverTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  function playerMouseEnterHandler(): void {
+  function handlePlayerMouseEnter(): void {
     if (!isPlaying && !isLoading) {
       setPlayerHoverTimer(setTimeout(() => setIsPlaying(true), AUTO_PLAY_DELAY_MS));
 
     }
   }
 
-  function playerMouseLeaveHandler(): void {
+  function handlePlayerMouseLeave(): void {
     setIsPlaying(false);
     clearTimeout(Number(playerHoverTimer));
   }
@@ -44,7 +44,7 @@ function VideoPlayer({noSound, film}: VideoPlayerProps): JSX.Element {
   }, [isPlaying]);
 
   return (
-    <div onMouseEnter={playerMouseEnterHandler} onMouseLeave={playerMouseLeaveHandler} className="small-film-card__image">
+    <div onMouseEnter={handlePlayerMouseEnter} onMouseLeave={handlePlayerMouseLeave} className="small-film-card__image">
       <video
         src={film.previewVideoLink}
         ref={videoRef}
@@ -58,4 +58,4 @@ function VideoPlayer({noSound, film}: VideoPlayerProps): JSX.Element {
   );
 }
 
-export default VideoPlayer;
+export default PreviewPlayer;

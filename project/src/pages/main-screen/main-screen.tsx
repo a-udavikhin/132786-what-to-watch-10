@@ -7,22 +7,24 @@ import Footer from '../../components/footer/footer';
 import FilmCard from '../../components/film-card/components/film-card/film-card';
 import {fetchPromoFilmAction} from './../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
-import {getFilms, getIsFilmsLoading, getPromoFilm} from '../../store/films-data/selectors';
+import {getFilms, getIsFilmsLoading, getIsPromoFilmLoading, getPromoFilm} from '../../store/films-data/selectors';
 import {getFilmsToDisplay} from '../../store/films-process/selectors';
 import {filmsProcess} from '../../store/films-process/films-process';
-import {filterFilms} from '../../store/selectors';
+import {getFilteredFilms} from '../../store/selectors';
 
 function MainScreen(): JSX.Element {
-  const filmsData = useAppSelector(getFilms);
+  const filmsInfo = useAppSelector(getFilms);
   const filmsToDisplay = useAppSelector(getFilmsToDisplay);
   const promoFilm = useAppSelector(getPromoFilm);
   const isFilmsLoading = useAppSelector(getIsFilmsLoading);
-  const filteredFilms = useAppSelector(filterFilms);
+  const isPromoFilmLoading = useAppSelector(getIsPromoFilmLoading);
+  const filteredFilms = useAppSelector(getFilteredFilms);
   const dispatch = useAppDispatch();
 
-
   useEffect(() => {
-    dispatch(fetchPromoFilmAction());
+    if (!isPromoFilmLoading) {
+      dispatch(fetchPromoFilmAction());
+    }
     dispatch(filmsProcess.actions.resetFilmList());
   }, []);
 
@@ -33,13 +35,13 @@ function MainScreen(): JSX.Element {
   return (
     <>
 
-      <FilmCard film={promoFilm ?? filmsData[0]} />
+      <FilmCard film={promoFilm ?? filmsInfo[0]} />
 
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList filmsData={filmsData} />
+          <GenreList filmsData={filmsInfo} />
 
           <FilmList filmsData={filteredFilms}/>
 

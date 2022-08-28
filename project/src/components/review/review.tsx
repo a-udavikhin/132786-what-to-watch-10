@@ -1,4 +1,5 @@
 import {ReviewEntry} from '../../types/review';
+import './review.css';
 
 type ReviewsProps = {
   review: ReviewEntry
