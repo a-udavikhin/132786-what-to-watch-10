@@ -1,6 +1,6 @@
 import {useRef, useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {AppRoute, VIDEO_PROGRESS_UPDATE_MS} from '../../../const';
+import {useNavigate} from 'react-router-dom';
+import {VIDEO_PROGRESS_UPDATE_MS} from '../../../const';
 import {Film} from '../../../types/film';
 import {formatPlayerTime, getVideoProgress} from '../../../utils/utils';
 import Preloader from '../components/preloader/preloader';
@@ -14,6 +14,8 @@ function FilmPlayer({film}: FilmPlayerProps): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVideoTime, setCurrentVideoTime] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
+
+  const navigate = useNavigate();
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<HTMLDivElement | null>(null);
@@ -72,7 +74,7 @@ function FilmPlayer({film}: FilmPlayerProps): JSX.Element {
       >
       </video>
 
-      <Link to={AppRoute.Root} type="button" className="player__exit">Exit</Link>
+      <button onClick={() => navigate(-1)} type="button" className="player__exit">Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">

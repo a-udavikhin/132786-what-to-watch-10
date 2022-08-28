@@ -5,8 +5,7 @@ import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
 import {getAuthorizationStatus} from '../../../../../store/user-process/selectors';
 import {getFavoriteFilms} from '../../../../../store/films-data/selectors';
 import {changeIsFavoriteStatusAction} from '../../../../../store/api-actions';
-import {useEffect, useState} from 'react';
-import {filmsData} from '../../../../../store/films-data/films-data';
+import {useState} from 'react';
 
 type FilmCardButtonsProps = {
   film: Film,
@@ -20,12 +19,6 @@ function FilmCardButtons({film, isShowAddReviewButton}: FilmCardButtonsProps): J
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favorites = useAppSelector(getFavoriteFilms);
-
-  useEffect(() => {
-    if (authorizationStatus === AuthorizationStatus.NoAuth) {
-      dispatch(filmsData.actions.clearFavoriteFilms());
-    }
-  }, []);
 
   const handleIsFavoriteToggle = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {

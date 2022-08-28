@@ -10,7 +10,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import {getFilms, getIsFilmsLoading, getIsPromoFilmLoading, getPromoFilm} from '../../store/films-data/selectors';
 import {getFilmsToDisplay} from '../../store/films-process/selectors';
 import {filmsProcess} from '../../store/films-process/films-process';
-import {filterFilms} from '../../store/selectors';
+import {getFilteredFilms} from '../../store/selectors';
 
 function MainScreen(): JSX.Element {
   const filmsInfo = useAppSelector(getFilms);
@@ -18,7 +18,7 @@ function MainScreen(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);
   const isFilmsLoading = useAppSelector(getIsFilmsLoading);
   const isPromoFilmLoading = useAppSelector(getIsPromoFilmLoading);
-  const filteredFilms = useAppSelector(filterFilms);
+  const filteredFilms = useAppSelector(getFilteredFilms);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

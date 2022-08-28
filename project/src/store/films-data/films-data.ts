@@ -1,4 +1,4 @@
-import {fetchFilmDetailsAction, fetchFilmsAction, fetchPromoFilmAction, sendReviewAction, fetchFavoriteFilmsAction, changeIsFavoriteStatusAction} from '../api-actions';
+import {fetchFilmDetailsAction, fetchFilmsAction, fetchPromoFilmAction, sendReviewAction, fetchFavoriteFilmsAction, changeIsFavoriteStatusAction, logoutAction} from '../api-actions';
 import {NameSpace} from '../../const';
 import {FilmsData} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
@@ -67,6 +67,9 @@ export const filmsData = createSlice({
       })
       .addCase(sendReviewAction.rejected, (state, action) => {
         state.error = action.error.message ?? null;
+      })
+      .addCase(logoutAction.fulfilled, (state, action) => {
+        state.favoriteFilms = [];
       });
   }
 });
