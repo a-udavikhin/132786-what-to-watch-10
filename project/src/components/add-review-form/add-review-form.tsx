@@ -1,16 +1,17 @@
-import {BaseSyntheticEvent, FormEvent, useState} from 'react';
+import {BaseSyntheticEvent, FormEvent, Fragment, useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {store} from '../../store';
 import {sendReviewAction} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 import './add-review-form.css';
+import {userProcess} from '../../store/user-process/user-process';
 
 function AddReviewForm(): JSX.Element {
   const {id} = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    rating: '8',
+    rating: '0',
     reviewText: ''
   });
 
@@ -21,17 +22,25 @@ function AddReviewForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
-    store.dispatch(sendReviewAction({filmId: Number(id), comment: formData.reviewText, rating: Number(formData.rating)}));
-    navigate(AppRoute.Film.replace(':id', String(id)), {state: {activeTab: 'reviews'}});
+    if (formData.reviewText.length >= 50 && formData.reviewText.length <= 400) {
+      if (Number(formData.rating) !== 0) {
+        store.dispatch(sendReviewAction({filmId: Number(id), comment: formData.reviewText, rating: Number(formData.rating)}));
+        navigate(AppRoute.Film.replace(':id', String(id)), {state: {activeTab: 'reviews'}});
+      } else {
+        store.dispatch(userProcess.actions.setError('Film rating should not be empty'));
+      }
+    } else {
+      store.dispatch(userProcess.actions.setError('Review should be at least 50 symbols long and cannot be longer than 400 symbols'));
+    }
   };
 
   const starsMarkUp = [];
   for (let stars = 10; stars > 0; stars--) {
     starsMarkUp.push(
-      <>
+      <Fragment key={`stars-wrap-${stars}`}>
         <input key={`input-${stars}`} className="rating__input" id={`star-${stars}`} type="radio" name="rating" onChange={handleFieldChange} value={stars} checked={Number(formData.rating) === stars} />
         <label key={`label-${stars}`} className="rating__label" htmlFor={`star-${stars}`}>Rating {stars}</label>
-      </>);
+      </Fragment>);
   }
 
   return (
