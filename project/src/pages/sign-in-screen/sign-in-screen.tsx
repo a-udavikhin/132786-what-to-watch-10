@@ -21,12 +21,19 @@ function SignInScreen(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
+  const passwordRequirements = new RegExp('(?=.*?[0-9])(?=.*?[A-Za-z]).+');
+
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
 
     if (formData.userEmail !== '' && formData.userPassword !== '') {
-      dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
-      navigate(AppRoute.Root);
+      if (passwordRequirements.test(formData.userPassword)) {
+        dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
+        navigate(AppRoute.Root);
+      } else {
+        dispatch(userProcess.actions.setError('Password should contain at least one letter and at least one digit'));
+      }
+
     } else {
       dispatch(userProcess.actions.setError('Login and password cannot be empty!'));
     }

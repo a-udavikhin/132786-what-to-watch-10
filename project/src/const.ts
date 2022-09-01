@@ -55,3 +55,7 @@ export const TIME_UNIT_ZERO_PAD_COUNT = 2;
 export const MIN_TWO_DIGIT_NUMBER = 10;
 
 export const VIDEO_PROGRESS_PERCENT_TOTAL = 100;
+
+export const MIN_REVIEW_LENGTH = 50;
+
+export const MAX_REVIEW_LENGTH = 400;
