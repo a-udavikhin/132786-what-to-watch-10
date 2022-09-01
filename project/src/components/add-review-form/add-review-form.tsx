@@ -1,7 +1,7 @@
 import {BaseSyntheticEvent, FormEvent, Fragment, useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {sendReviewAction} from '../../store/api-actions';
-import {AppRoute, MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH} from '../../const';
+import {AppRoute, MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH, REVIEW_UNINITIALIZED_RATING_VALUE} from '../../const';
 import './add-review-form.css';
 import {useAppDispatch} from '../../hooks/redux';
 
@@ -11,7 +11,7 @@ function AddReviewForm(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
-    rating: '0',
+    rating: REVIEW_UNINITIALIZED_RATING_VALUE,
     reviewText: ''
   });
 
@@ -46,7 +46,7 @@ function AddReviewForm(): JSX.Element {
       <div className="add-review__text">
         <textarea className="add-review__textarea" name="reviewText" onChange={handleFieldChange} id="review-text" placeholder="Review text" value={formData.reviewText}></textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit" onClick={handleSubmit} disabled={formData.reviewText.length < MIN_REVIEW_LENGTH || formData.reviewText.length > MAX_REVIEW_LENGTH || formData.rating === '0'}>Post</button>
+          <button className="add-review__btn" type="submit" onClick={handleSubmit} disabled={formData.reviewText.length < MIN_REVIEW_LENGTH || formData.reviewText.length > MAX_REVIEW_LENGTH || formData.rating === REVIEW_UNINITIALIZED_RATING_VALUE}>Post</button>
         </div>
 
       </div>

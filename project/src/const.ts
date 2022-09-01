@@ -52,6 +52,8 @@ export const MINUTES_IN_HOUR = 60;
 
 export const TIME_UNIT_ZERO_PAD_COUNT = 2;
 
+export const TIME_UNIT_PAD_VALUE = '0';
+
 export const MIN_TWO_DIGIT_NUMBER = 10;
 
 export const VIDEO_PROGRESS_PERCENT_TOTAL = 100;
@@ -59,3 +61,9 @@ export const VIDEO_PROGRESS_PERCENT_TOTAL = 100;
 export const MIN_REVIEW_LENGTH = 50;
 
 export const MAX_REVIEW_LENGTH = 400;
+
+export const REVIEW_UNINITIALIZED_RATING_VALUE = '0';
+
+export const ERROR_EMPTY_LOGIN_DATA_MESSAGE = 'Login and password cannot be empty!';
+
+export const ERROR_PASSWORD_REQUIREMENTS_MESSAGE = 'Password should contain at least one letter and at least one digit';

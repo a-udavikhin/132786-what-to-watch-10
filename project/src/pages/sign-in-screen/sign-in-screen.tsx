@@ -1,4 +1,4 @@
-import {AppRoute} from '../../const';
+import {AppRoute, ERROR_EMPTY_LOGIN_DATA_MESSAGE, ERROR_PASSWORD_REQUIREMENTS_MESSAGE} from '../../const';
 import {useNavigate} from 'react-router-dom';
 import {BaseSyntheticEvent, useState, FormEvent} from 'react';
 import {loginAction} from '../../store/api-actions';
@@ -31,11 +31,11 @@ function SignInScreen(): JSX.Element {
         dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
         navigate(AppRoute.Root);
       } else {
-        dispatch(userProcess.actions.setError('Password should contain at least one letter and at least one digit'));
+        dispatch(userProcess.actions.setError(ERROR_PASSWORD_REQUIREMENTS_MESSAGE));
       }
 
     } else {
-      dispatch(userProcess.actions.setError('Login and password cannot be empty!'));
+      dispatch(userProcess.actions.setError(ERROR_EMPTY_LOGIN_DATA_MESSAGE));
     }
   };
 
