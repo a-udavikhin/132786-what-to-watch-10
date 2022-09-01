@@ -1,7 +1,7 @@
 import Header from '../../../header/header';
 import {Film} from '../../../../types/film';
 import FilmCardDescription from './../components/film-card-description/film-card-description';
-import { memo } from 'react';
+import {memo} from 'react';
 
 type FilmCardProps = {
   film: Film

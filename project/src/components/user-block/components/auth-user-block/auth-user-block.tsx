@@ -1,13 +1,13 @@
 import {AppRoute} from '../../../../const';
 import {Link} from 'react-router-dom';
-import {store} from '../../../../store';
 import {logoutAction} from '../../../../store/api-actions';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getUserData} from '../../../../store/user-process/selectors';
 
 function AuthUserBlock(): JSX.Element {
 
   const user = useAppSelector(getUserData);
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="user-block">
@@ -24,7 +24,7 @@ function AuthUserBlock(): JSX.Element {
           className="user-block__link"
           onClick={(evt) => {
             evt.preventDefault();
-            store.dispatch(logoutAction());
+            dispatch(logoutAction());
           }}
         >
             Sign Out

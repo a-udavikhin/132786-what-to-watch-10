@@ -1,4 +1,6 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
+import {store} from '../store';
+import {userProcess} from '../store/user-process/user-process';
 import {getToken} from './token';
 
 const BACKEND_URL = 'https://10.react.pages.academy/wtw';
@@ -21,6 +23,19 @@ export const createAPI = (): AxiosInstance => {
       return config;
     }
   );
+
+  api.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError) =>
+    {
+      if (error.response?.data.error && error.response.status === 401) {
+        store.dispatch(userProcess.actions.setError(error.response.data.error));
+      }
+
+      throw error;
+    }
+  );
+
 
   return api;
 };

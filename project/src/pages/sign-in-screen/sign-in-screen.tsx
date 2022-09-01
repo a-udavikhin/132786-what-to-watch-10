@@ -1,14 +1,15 @@
-import {AppRoute} from '../../const';
+import {AppRoute, ERROR_EMPTY_LOGIN_DATA_MESSAGE, ERROR_PASSWORD_REQUIREMENTS_MESSAGE} from '../../const';
 import {useNavigate} from 'react-router-dom';
 import {BaseSyntheticEvent, useState, FormEvent} from 'react';
-import {store} from '../../store';
 import {loginAction} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import {userProcess} from '../../store/user-process/user-process';
+import {useAppDispatch} from '../../hooks/redux';
 
 function SignInScreen(): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
     userEmail: '',
@@ -20,14 +21,21 @@ function SignInScreen(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
+  const passwordRequirements = new RegExp('(?=.*?[0-9])(?=.*?[A-Za-z]).+');
+
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
 
     if (formData.userEmail !== '' && formData.userPassword !== '') {
-      store.dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
-      navigate(AppRoute.Root);
+      if (passwordRequirements.test(formData.userPassword)) {
+        dispatch(loginAction({email: formData.userEmail, password: formData.userPassword}));
+        navigate(AppRoute.Root);
+      } else {
+        dispatch(userProcess.actions.setError(ERROR_PASSWORD_REQUIREMENTS_MESSAGE));
+      }
+
     } else {
-      store.dispatch(userProcess.actions.setError('Login and password cannot be empty!'));
+      dispatch(userProcess.actions.setError(ERROR_EMPTY_LOGIN_DATA_MESSAGE));
     }
   };
 

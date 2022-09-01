@@ -1,7 +1,7 @@
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { useAppSelector } from '../../hooks/redux';
+import {useAppSelector} from '../../hooks/redux';
 import {getFavoriteFilms} from '../../store/films-data/selectors';
 
 

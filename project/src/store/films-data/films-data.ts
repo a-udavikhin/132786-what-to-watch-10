@@ -37,6 +37,10 @@ export const filmsData = createSlice({
       .addCase(fetchFilmsAction.rejected, (state, action) => {
         state.error = action.error.message ?? null;
       })
+      .addCase(fetchFilmDetailsAction.rejected, (state, action) => {
+        state.error = action.error.message ?? null;
+        state.isFilmDetailsLoading = false;
+      })
       .addCase(fetchFilmDetailsAction.pending, (state) => {
         state.isFilmDetailsLoading = true;
       })
@@ -68,7 +72,7 @@ export const filmsData = createSlice({
       .addCase(sendReviewAction.rejected, (state, action) => {
         state.error = action.error.message ?? null;
       })
-      .addCase(logoutAction.fulfilled, (state, action) => {
+      .addCase(logoutAction.fulfilled, (state) => {
         state.favoriteFilms = [];
       });
   }
