@@ -35,7 +35,7 @@ function FilmPlayer({film}: FilmPlayerProps): JSX.Element {
       return;
     }
 
-    window.setInterval(() => {
+    const playerInterval = window.setInterval(() => {
       setCurrentVideoTime(Math.floor(videoRef.current?.currentTime || 0));
     }, VIDEO_PROGRESS_UPDATE_MS);
 
@@ -59,6 +59,10 @@ function FilmPlayer({film}: FilmPlayerProps): JSX.Element {
     if (!isPlaying) {
       videoRef.current.pause();
     }
+
+    return () => {
+      clearInterval(playerInterval);
+    };
 
   }, [isPlaying, videoRef.current, isLoading, videoDuration]);
 

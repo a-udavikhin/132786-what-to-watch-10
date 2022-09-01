@@ -1,4 +1,4 @@
-import {FilmGrades} from '../const';
+import {FilmGrades, MINUTES_IN_HOUR, MIN_TWO_DIGIT_NUMBER, TIME_UNIT_ZERO_PAD_COUNT, VIDEO_PROGRESS_PERCENT_TOTAL} from '../const';
 
 export function capitalize(str: string): string {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
@@ -9,16 +9,16 @@ export function getStarringString(starringArr: Array<string>): string {
 }
 
 export function getFilmGrade(rating: number): string {
-  if (rating >= 0 && rating < 3)
-  {return FilmGrades.Bad;}
-  if (rating >= 3 && rating < 5)
-  {return FilmGrades.Normal;}
-  if (rating >= 5 && rating < 8)
-  {return FilmGrades.Good;}
-  if (rating >= 8 && rating < 10)
-  {return FilmGrades.VeryGood;}
-  if (rating === 10)
-  {return FilmGrades.Awesome;}
+  if (rating >= FilmGrades.Bad.min && rating < FilmGrades.Normal.min)
+  {return FilmGrades.Bad.grade;}
+  if (rating >= FilmGrades.Normal.min && rating < FilmGrades.Good.min)
+  {return FilmGrades.Normal.grade;}
+  if (rating >= FilmGrades.Good.min && rating < FilmGrades.VeryGood.min)
+  {return FilmGrades.Good.grade;}
+  if (rating >= FilmGrades.VeryGood.min && rating < FilmGrades.Awesome.min)
+  {return FilmGrades.VeryGood.grade;}
+  if (rating === FilmGrades.Awesome.min)
+  {return FilmGrades.Awesome.grade;}
 
   return 'Unknown';
 }
@@ -28,18 +28,18 @@ export function getPlural(value: number, unit: string): string {
 }
 
 export function formatRunTime(runTime: number): string {
-  const hours = Math.floor(runTime / 60);
-  const minutes = runTime % 60;
+  const hours = Math.floor(runTime / MINUTES_IN_HOUR);
+  const minutes = runTime % MINUTES_IN_HOUR;
   return (hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`);
 }
 
-export const formatTimeUnit = (value: number): string => value < 10 ? String(value).padStart(2, '0') : String(value);
+export const formatTimeUnit = (value: number): string => value < MIN_TWO_DIGIT_NUMBER ? String(value).padStart(TIME_UNIT_ZERO_PAD_COUNT, '0') : String(value);
 
 export function formatPlayerTime(playerTime: number): string {
-  const hours = playerTime / (60 * 60);
-  const minutes = playerTime % (60 * 60) / 60;
+  const hours = playerTime / (MINUTES_IN_HOUR * MINUTES_IN_HOUR);
+  const minutes = playerTime % (MINUTES_IN_HOUR * MINUTES_IN_HOUR) / MINUTES_IN_HOUR;
   const seconds = playerTime - hours - minutes;
   return (`-${Math.trunc(hours) > 0 ? `${formatTimeUnit(Math.trunc(hours))}:` : ''}${formatTimeUnit(Math.trunc(minutes))}:${formatTimeUnit(Math.ceil(seconds))}`);
 }
 
-export const getVideoProgress = (currentTime: number, duration: number): number => currentTime / duration * 100;
+export const getVideoProgress = (currentTime: number, duration: number): number => currentTime / duration * VIDEO_PROGRESS_PERCENT_TOTAL;

@@ -1,5 +1,5 @@
 import {AppRoute, AuthorizationStatus} from '../../../../../const';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Film} from '../../../../../types/film';
 import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
 import {getAuthorizationStatus} from '../../../../../store/user-process/selectors';
@@ -14,16 +14,21 @@ type FilmCardButtonsProps = {
 
 
 function FilmCardButtons({film, isShowAddReviewButton}: FilmCardButtonsProps): JSX.Element {
-  const [currentStatus, setCurrentStatus] = useState(film.isFavorite);
-  const dispatch = useAppDispatch();
-
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favorites = useAppSelector(getFavoriteFilms);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [currentStatus, setCurrentStatus] = useState(favorites.some((favorite) => favorite.id === film.id));
+
 
   const handleIsFavoriteToggle = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(changeIsFavoriteStatusAction({filmId: film.id, currentStatus: currentStatus}));
       setCurrentStatus(!currentStatus);
+    }
+
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.SignIn);
     }
   };
 
