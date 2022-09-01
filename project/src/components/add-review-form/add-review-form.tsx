@@ -4,7 +4,7 @@ import {sendReviewAction} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 import './add-review-form.css';
 import {userProcess} from '../../store/user-process/user-process';
-import { useAppDispatch } from '../../hooks/redux';
+import {useAppDispatch} from '../../hooks/redux';
 
 function AddReviewForm(): JSX.Element {
   const {id} = useParams();

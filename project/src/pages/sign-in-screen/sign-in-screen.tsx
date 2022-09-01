@@ -5,7 +5,7 @@ import {loginAction} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import {userProcess} from '../../store/user-process/user-process';
-import { useAppDispatch } from '../../hooks/redux';
+import {useAppDispatch} from '../../hooks/redux';
 
 function SignInScreen(): JSX.Element {
   const navigate = useNavigate();
