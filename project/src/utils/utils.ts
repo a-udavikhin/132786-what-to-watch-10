@@ -1,4 +1,4 @@
-import {FilmGrades, MINUTES_IN_HOUR, MIN_TWO_DIGIT_NUMBER, TIME_UNIT_PAD_VALUE, TIME_UNIT_ZERO_PAD_COUNT, VIDEO_PROGRESS_PERCENT_TOTAL} from '../const';
+import {FilmGrades, MINUTES_IN_HOUR, MIN_TWO_DIGIT_NUMBER, TIME_UNIT_PAD_VALUE, TIME_UNIT_PAD_COUNT, VIDEO_PROGRESS_PERCENT_TOTAL} from '../const';
 
 export function capitalize(str: string): string {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
@@ -33,7 +33,7 @@ export function formatRunTime(runTime: number): string {
   return (hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`);
 }
 
-export const formatTimeUnit = (value: number): string => value < MIN_TWO_DIGIT_NUMBER ? String(value).padStart(TIME_UNIT_ZERO_PAD_COUNT, TIME_UNIT_PAD_VALUE) : String(value);
+export const formatTimeUnit = (value: number): string => value < MIN_TWO_DIGIT_NUMBER ? String(value).padStart(TIME_UNIT_PAD_COUNT, TIME_UNIT_PAD_VALUE) : String(value);
 
 export function formatPlayerTime(playerTime: number): string {
   const hours = playerTime / (MINUTES_IN_HOUR * MINUTES_IN_HOUR);

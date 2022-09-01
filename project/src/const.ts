@@ -50,7 +50,7 @@ export const VIDEO_PROGRESS_UPDATE_MS = 1000;
 
 export const MINUTES_IN_HOUR = 60;
 
-export const TIME_UNIT_ZERO_PAD_COUNT = 2;
+export const TIME_UNIT_PAD_COUNT = 2;
 
 export const TIME_UNIT_PAD_VALUE = '0';
 
